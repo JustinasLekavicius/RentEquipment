@@ -4,7 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
-//TEST
+//TEST NIGGA
+
 public class MainWindow extends Main {
 
 	private JFrame frame;
