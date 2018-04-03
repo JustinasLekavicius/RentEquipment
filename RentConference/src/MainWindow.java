@@ -1,12 +1,13 @@
 import java.awt.EventQueue;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
-//TEST NIGGA:(khvuyfyfuhf
 
-public class MainWindow extends Main {
+public class MainWindow {
 
 	private JFrame frame;
 
@@ -45,9 +46,20 @@ public class MainWindow extends Main {
 		JButton RoomButton = new JButton("Rent a room");
 		RoomButton.setBounds(124, 50, 200, 50);
 		frame.getContentPane().add(RoomButton);
+		RoomButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] args = null;
+				// TODO Auto-generated method stub
+				
+				AvailableRooms.main(args);
+			}
+		});
 		
 		JButton EquipmentButton = new JButton("Rent equipment");
 		EquipmentButton.setBounds(124, 150, 200, 50);
 		frame.getContentPane().add(EquipmentButton);
+
 	}
 }
