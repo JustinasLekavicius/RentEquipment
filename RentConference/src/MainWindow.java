@@ -1,65 +1,51 @@
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JProgressBar;
-import javax.swing.JToolBar;
 
-public class MainWindow {
+public class MainWindow{
+	
+	static MainWindow window = new MainWindow();
+	JFrame frame = new JFrame();
 
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow window = new MainWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	static void On()
+	{
+		window.frame.setVisible(true);
 	}
-
-	/**
-	 * Create the application.
-	 */
+	static void Off()
+	{
+		window.frame.setVisible(false);
+	}
 	public MainWindow() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
+		frame.setTitle("Rent Equipment Software V0.01");
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 		JButton RoomButton = new JButton("Rent a room");
 		RoomButton.setBounds(124, 50, 200, 50);
 		frame.getContentPane().add(RoomButton);
-		RoomButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String[] args = null;
-				// TODO Auto-generated method stub
-				
-				AvailableRooms.main(args);
-			}
-		});
-		
 		JButton EquipmentButton = new JButton("Rent equipment");
 		EquipmentButton.setBounds(124, 150, 200, 50);
 		frame.getContentPane().add(EquipmentButton);
-
+		JButton AboutButton = new JButton("About....");
+		AboutButton.setBounds(333, 0, 117, 25);
+		frame.getContentPane().add(AboutButton);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		AboutButton.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent arg0)
+					{
+						AboutWindow.On();
+					}
+				});
+		RoomButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				MainWindow.Off();
+				RoomWindow.On();
+			}
+		});
+		
 	}
 }
