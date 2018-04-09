@@ -18,6 +18,7 @@ public class MainWindow{
 		window.frame.setVisible(false);
 	}
 	public MainWindow() {
+		frame.setResizable(false);
 		frame.setTitle("Programa");
 		frame.setBounds(100, 100, 450, 300);
 		frame.getContentPane().setLayout(null);
@@ -48,6 +49,14 @@ public class MainWindow{
 			{
 				MainWindow.Off();
 				RoomWindow.On();
+			}
+		});
+		EquipmentButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				MainWindow.Off();
+				EquipmentWindow.On();
 			}
 		});
 		

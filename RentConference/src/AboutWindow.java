@@ -16,11 +16,13 @@ public class AboutWindow {
 	}
 	
 	public AboutWindow() {
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 450, 100);
 		frame.getContentPane().setLayout(null);
 		
 		JTextPane credits = new JTextPane();
+		credits.setEditable(false);
 		credits.setText("Developed by Justinas Lekavičius and Vytenis Alaburda of Mathematics and Informatics Faculty (Vilnius University)");
 		credits.setBounds(12, 12, 426, 276);
 		frame.getContentPane().add(credits);

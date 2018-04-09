@@ -18,7 +18,8 @@ public class RoomWindow{
 		window.frame.setVisible(false);
 	}
 	public RoomWindow() {
-		frame.setTitle("Rent Equipment Software V0.01");
+		frame.setResizable(false);
+		frame.setTitle("Rooms");
 		frame.setBounds(100, 100, 450, 300);
 		frame.getContentPane().setLayout(null);
 		JButton HelpMeButton = new JButton("Help me choose!");
@@ -64,40 +65,35 @@ public class RoomWindow{
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				for (Rooms theroom: EnumSet.range(Rooms.auditorija, Rooms.auditorija))
-				textArea.setText("The selected room is:\n " + theroom.getName() + "\nthe area is " + theroom.getArea() + " square meters\nthe rent price is " + theroom.getPrice() + " euros for a day.");
+					textArea.setText("The selected room is:\n" + Rooms.auditorija.getName() + "\nthe room can fit " + Rooms.auditorija.getArea() + " people\nthe rent price is " + Rooms.auditorija.getPrice() + " euros for a day.");
 			}
 		});
 		HallButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				for (Rooms theroom: EnumSet.range(Rooms.sale, Rooms.sale))
-					textArea.setText("The selected room is:\n " + theroom.getName() + "\nthe area is " + theroom.getArea() + " square meters\nthe rent price is " + theroom.getPrice() + " euros for a day.");
+					textArea.setText("The selected room is:\n" + Rooms.sale.getName() + "\nthe room can fit " + Rooms.sale.getArea() + " people\nthe rent price is " + Rooms.sale.getPrice() + " euros for a day.");
 			}
 		});
 		RoomButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				for (Rooms theroom: EnumSet.range(Rooms.kambarys, Rooms.kambarys))
-					textArea.setText("The selected room is:\n " + theroom.getName() + "\nthe area is " + theroom.getArea() + " square meters\nthe rent price is " + theroom.getPrice() + " euros for a day.");
+					textArea.setText("The selected room is:\n" + Rooms.kambarys.getName() + "\nthe room can fit " + Rooms.kambarys.getArea() + " people\nthe rent price is " + Rooms.kambarys.getPrice() + " euros for a day.");
 			}
 		});
 		ClassroomButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				for (Rooms theroom: EnumSet.range(Rooms.klase, Rooms.klase))
-					textArea.setText("The selected room is:\n " + theroom.getName() + "\nthe area is " + theroom.getArea() + " square meters\nthe rent price is " + theroom.getPrice() + " euros for a day.");
+					textArea.setText("The selected room is:\n" + Rooms.klase.getName() + "\nthe room can fit " + Rooms.klase.getArea() + " people\nthe rent price is " + Rooms.klase.getPrice() + " euros for a day.");
 			}
 		});
 		ChamberButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				for (Rooms theroom: EnumSet.range(Rooms.kambariukas, Rooms.kambariukas))
-					textArea.setText("The selected room is:\n " + theroom.getName() + "\nthe area is " + theroom.getArea() + " square meters\nthe rent price is " + theroom.getPrice() + " euros for a day.");
+					textArea.setText("The selected room is:\n" + Rooms.kambariukas.getName() + "\nthe room can fit " + Rooms.kambariukas.getArea() + " people\nthe rent price is " + Rooms.kambariukas.getPrice() + " euros for a day.");
 			}
 		});
 		BackButton.addActionListener(new ActionListener()
