@@ -7,11 +7,10 @@ import java.util.EnumSet;
 
 import javax.swing.*;
 
-public class EquipmentWindow {
+public class EquipmentWindow extends Main {
 	
 	static EquipmentWindow window = new EquipmentWindow();
 	JFrame frame = new JFrame();
-	private int total = 0;
 	
 	static void On()
 	{
@@ -229,7 +228,15 @@ public class EquipmentWindow {
 
 			}
 		});
-			
+		NextButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				RoomOrEquipment = "Equipment";
+				EquipmentWindow.Off();
+				SuggestRoomOrEquipment.On();
+			}
+		});	
 		
 	}
 }

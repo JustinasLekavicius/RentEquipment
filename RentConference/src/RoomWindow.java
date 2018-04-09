@@ -5,7 +5,7 @@ import java.util.EnumSet;
 
 import javax.swing.*;
 
-public class RoomWindow{
+public class RoomWindow extends Main{
 	
 	static RoomWindow window = new RoomWindow();
 	JFrame frame = new JFrame();
@@ -100,6 +100,7 @@ public class RoomWindow{
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				
 				RoomWindow.Off();
 				MainWindow.On();
 			}
@@ -108,10 +109,19 @@ public class RoomWindow{
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				
 				RoomWindow.Off();
 				HelpMeChoose.On();
 			}
 		});
-		
+		NextButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				RoomOrEquipment = "Room";
+				RoomWindow.Off();
+				SuggestRoomOrEquipment.On();
+			}
+		});
 	}
 }
