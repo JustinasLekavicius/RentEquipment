@@ -104,6 +104,14 @@ public class RoomWindow{
 				MainWindow.On();
 			}
 		});
+		HelpMeButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				RoomWindow.Off();
+				HelpMeChoose.On();
+			}
+		});
 		
 	}
 }
