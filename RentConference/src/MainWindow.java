@@ -19,7 +19,7 @@ public class MainWindow{
 	}
 	public MainWindow() {
 		frame.setResizable(false);
-		frame.setTitle("Programa");
+		frame.setTitle("Program");
 		frame.setBounds(100, 100, 450, 300);
 		frame.getContentPane().setLayout(null);
 		JButton RoomButton = new JButton("Rent a room");
