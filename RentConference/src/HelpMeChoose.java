@@ -24,17 +24,29 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
+import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.Panel;
+import javax.swing.JPopupMenu;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenu;
+import javax.swing.JEditorPane;
+import javax.swing.JProgressBar;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class HelpMeChoose {
 
 	private JTextField txtmoniSkaiius;
-	private JTextField textField;
+	private JTextField txtTypeOfEvent;
 	private JTextField txtData;
 	private JTextField txtPradia;
 	private JTextField txtPabaiga;
 
 	static HelpMeChoose window = new HelpMeChoose();
 	JFrame frame = new JFrame();
+	private JButton btnChoose;
 	static void On()
 	{
 		window.frame.setVisible(true);
@@ -44,65 +56,100 @@ public class HelpMeChoose {
 		window.frame.setVisible(false);
 	}
 	public HelpMeChoose() {
-			frame.setBounds(100, 100, 510, 373);
+			frame.setBounds(100, 100, 337, 395);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.getContentPane().setLayout(null);
 			
 			txtmoniSkaiius = new JTextField();
+			txtmoniSkaiius.setText("Number of people");
 			txtmoniSkaiius.setEditable(false);
-			txtmoniSkaiius.setText("\u017Dmoni\u0173 skai\u010Dius:");
 			txtmoniSkaiius.setColumns(10);
-			txtmoniSkaiius.setBounds(12, 83, 109, 22);
+			txtmoniSkaiius.setBounds(12, 83, 126, 22);
 			frame.getContentPane().add(txtmoniSkaiius);
 			
-			textField = new JTextField();
-			textField.setText("Paskirtis:");
-			textField.setEditable(false);
-			textField.setColumns(10);
-			textField.setBounds(12, 13, 91, 22);
-			frame.getContentPane().add(textField);
+			txtTypeOfEvent = new JTextField();
+			txtTypeOfEvent.setText("Type of event");
+			txtTypeOfEvent.setEditable(false);
+			txtTypeOfEvent.setColumns(10);
+			txtTypeOfEvent.setBounds(12, 13, 126, 22);
+			frame.getContentPane().add(txtTypeOfEvent);
 			
 			JSpinner spinner = new JSpinner();
-			spinner.setModel(new SpinnerListModel(new String[] {"Konferencija", "VU SA susirinkimas", "Atvira diskusija", "Paskaita", "D\u0117stytoj\u0173 susirinkimas", "Kita"}));
-			spinner.setBounds(12, 48, 109, 22);
+			spinner.setModel(new SpinnerListModel(new String[] {"Conference", "VU SA meeting", "Open discusion", "lecture", "Student for Student (SS)", "Other"}));
+			spinner.setBounds(12, 48, 126, 22);
 			frame.getContentPane().add(spinner);
 			
 			JSpinner spinner_1 = new JSpinner();
 			spinner_1.setModel(new SpinnerNumberModel(10, 0, 200, 10));
-			spinner_1.setBounds(12, 118, 109, 22);
+			spinner_1.setBounds(12, 118, 126, 22);
 			frame.getContentPane().add(spinner_1);
 			
 			txtData = new JTextField();
-			txtData.setText("Data:");
+			txtData.setText("Reservation time:");
 			txtData.setEditable(false);
 			txtData.setColumns(10);
-			txtData.setBounds(12, 153, 109, 22);
+			txtData.setBounds(12, 153, 126, 22);
 			frame.getContentPane().add(txtData);
 			
 			JSpinner spinner_2 = new JSpinner();
+			spinner_2.addInputMethodListener(new InputMethodListener() {
+				public void caretPositionChanged(InputMethodEvent arg0) {
+				}
+			});
 			spinner_2.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.HOUR));
-			spinner_2.setBounds(133, 193, 120, 22);
+			spinner_2.setBounds(163, 193, 120, 22);
 			frame.getContentPane().add(spinner_2);
 			
 			txtPradia = new JTextField();
-			txtPradia.setText("Prad\u017Eia");
+			txtPradia.setText("Start");
 			txtPradia.setEditable(false);
 			txtPradia.setColumns(10);
-			txtPradia.setBounds(12, 193, 109, 22);
+			txtPradia.setBounds(12, 193, 126, 22);
 			frame.getContentPane().add(txtPradia);
 			
 			txtPabaiga = new JTextField();
-			txtPabaiga.setText("Pabaiga");
+			txtPabaiga.setText("End");
 			txtPabaiga.setEditable(false);
 			txtPabaiga.setColumns(10);
-			txtPabaiga.setBounds(12, 225, 109, 22);
+			txtPabaiga.setBounds(12, 225, 126, 22);
 			frame.getContentPane().add(txtPabaiga);
 			
 			JSpinner spinner_3 = new JSpinner();
-			spinner_3.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.DAY_OF_YEAR));
-			spinner_3.setBounds(133, 225, 120, 22);
+			spinner_3.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.SECOND));
+			spinner_3.setBounds(163, 225, 120, 22);
 			frame.getContentPane().add(spinner_3);
+			
+			JButton btnNewButton = new JButton("Back");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					RoomWindow backButton = new RoomWindow();
+					RoomWindow.On();
+					HelpMeChoose.Off();
+				}
+			});
+			btnNewButton.setBounds(6, 288, 97, 25);
+			frame.getContentPane().add(btnNewButton);
+			
+			btnChoose = new JButton("Choose");
+			btnChoose.setBounds(199, 288, 97, 25);
+			frame.getContentPane().add(btnChoose);
 		}
-
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 	}
 	
