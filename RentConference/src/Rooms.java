@@ -1,9 +1,12 @@
 public enum Rooms
 {	
 	//			PAVADINIMAS	 PLOTAS	KAINA
-	auditorija("Large auditory", 100, 30),
+	auditorija("Large auditorium", 100, 30),
 	sale("Big hall", 70, 20),
-	kambarys("Medium room", 30, 10);	
+	kambarys("Medium sized room", 30, 10),
+	klase("Medium sized classroom", 35, 15),
+	kambariukas("Small room", 20, 5);
+	
 	
 	private final String pavadinimas;
 	private final int plotas;

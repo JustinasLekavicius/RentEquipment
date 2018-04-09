@@ -5,7 +5,7 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JTextPane;
 import java.awt.Font;
-
+//NOT YET AVAILABLE FOR USE
 public class AvailableRooms {
 
 	private JFrame frame;
