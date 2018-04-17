@@ -1,6 +1,6 @@
 public enum Equipment
 {	
-	//			NAME	PRICE
+	//			PAVADINIMAS	KAINA
 	projektorius("Projector", 80),
 	garsiakalbis("Large speaker", 40),
 	lazeris("Laser pointer", 15),

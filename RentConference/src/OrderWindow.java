@@ -5,9 +5,9 @@ import java.util.EnumSet;
 
 import javax.swing.*;
 
-public class RoomWindow extends Main{
+public class OrderWindow extends Main{
 	
-	static RoomWindow window = new RoomWindow();
+	static OrderWindow window = new OrderWindow();
 	JFrame frame = new JFrame();
 	static void On()
 	{
@@ -17,7 +17,7 @@ public class RoomWindow extends Main{
 	{
 		window.frame.setVisible(false);
 	}
-	public RoomWindow() {
+	public OrderWindow() {
 		frame.setResizable(false);
 		frame.setTitle("Rooms");
 		frame.setBounds(100, 100, 450, 300);
@@ -101,7 +101,7 @@ public class RoomWindow extends Main{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				suggested = false;
-				RoomWindow.Off();
+				OrderWindow.Off();
 				MainWindow.On();
 			}
 		});
@@ -110,7 +110,7 @@ public class RoomWindow extends Main{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				
-				RoomWindow.Off();
+				OrderWindow.Off();
 				HelpMeChoose.On();
 			}
 		});
@@ -120,13 +120,8 @@ public class RoomWindow extends Main{
 			{
 				RoomOrEquipment = "Room";
 				if (suggested == false) {
-				RoomWindow.Off();
+				OrderWindow.Off();
 				SuggestRoomOrEquipment.On();
-				}
-				else if (suggested == true)
-				{
-					RoomWindow.Off();
-					TotalWindow.On();
 				}
 				
 			}

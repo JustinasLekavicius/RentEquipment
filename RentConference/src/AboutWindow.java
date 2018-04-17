@@ -20,7 +20,7 @@ public class AboutWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 450, 100);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		JTextPane credits = new JTextPane();
 		credits.setEditable(false);
 		credits.setText("Developed by Justinas Lekavičius and Vytenis Alaburda of Mathematics and Informatics Faculty (Vilnius University)");

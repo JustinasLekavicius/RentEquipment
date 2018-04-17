@@ -1,11 +1,11 @@
 public enum Rooms
 {	
-	//			NAME            CAPACITY PRICE ACTIVITY
-	auditorija("Large auditorium", 100, 30, "Concert"),
-	sale("Big hall", 70, 20, "Conference"),
-	kambarys("Medium sized room", 30, 10, "Presentation"),
-	klase("Medium sized classroom", 35, 15, "Presentation"),
-	kambariukas("Small room", 20, 5, "Presentation");
+	//			PAVADINIMAS	 ZMONIU TALPA	KAINA 
+	auditorija("Large auditorium", 100, 30, "Koncertas"),
+	sale("Big hall", 70, 20, "Konferencija"),
+	kambarys("Medium sized room", 30, 10, "Prezentacija"),
+	klase("Medium sized classroom", 35, 15, "Prezentacija"),
+	kambariukas("Small room", 20, 5, "Prezentacija");
 	
 	
 	private final String pavadinimas;

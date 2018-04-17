@@ -84,6 +84,7 @@ public class EquipmentWindow extends Main {
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				suggested = false;
 				EquipmentWindow.Off();
 				MainWindow.On();
 			}
@@ -233,8 +234,16 @@ public class EquipmentWindow extends Main {
 			public void actionPerformed(ActionEvent arg0)
 			{
 				RoomOrEquipment = "Equipment";
+				if (suggested == false) {
 				EquipmentWindow.Off();
 				SuggestRoomOrEquipment.On();
+				}
+				else if (suggested == true)
+				{
+					RoomWindow.Off();
+					TotalWindow.On();
+				}
+
 			}
 		});	
 		
