@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class MainWindow{
+public class MainWindow extends Main{
 	
 	static MainWindow window = new MainWindow();
 	JFrame frame = new JFrame();
@@ -18,20 +18,30 @@ public class MainWindow{
 		window.frame.setVisible(false);
 	}
 	public MainWindow() {
+		frame.getContentPane().setBackground(new Color(153, 204, 204));
+		frame.setBackground(new Color(153, 204, 204));
 		frame.setResizable(false);
-		frame.setTitle("Programa");
+		frame.setTitle("RentConference");
 		frame.setBounds(100, 100, 450, 300);
 		frame.getContentPane().setLayout(null);
-		JButton RoomButton = new JButton("Rent a room");
-		RoomButton.setBounds(124, 50, 200, 50);
-		frame.getContentPane().add(RoomButton);
-		JButton EquipmentButton = new JButton("Rent equipment");
-		EquipmentButton.setBounds(124, 150, 200, 50);
-		frame.getContentPane().add(EquipmentButton);
+		JButton NewOrderButton = new JButton("Start a new order");
+		NewOrderButton.setBounds(124, 50, 200, 50);
+		frame.getContentPane().add(NewOrderButton);
+		JButton OrderConfirmationButton = new JButton("Order confirmation");
+		OrderConfirmationButton.setBounds(124, 128, 200, 50);
+		frame.getContentPane().add(OrderConfirmationButton);
 		
 		JButton AboutButton = new JButton("About....");
 		AboutButton.setBounds(333, 0, 117, 25);
 		frame.getContentPane().add(AboutButton);
+		
+		JButton PastOrderButton = new JButton("Past orders");
+		PastOrderButton.setBounds(6, 256, 155, 27);
+		frame.getContentPane().add(PastOrderButton);
+		
+		JButton PendingOrderButton = new JButton("Pending order");
+		PendingOrderButton.setBounds(289, 256, 155, 27);
+		frame.getContentPane().add(PendingOrderButton);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -43,22 +53,26 @@ public class MainWindow{
 					}
 				});
 				
-		RoomButton.addActionListener(new ActionListener()
+		NewOrderButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				total = 0;
 				MainWindow.Off();
-				RoomWindow.On();
+				OrderWindow.On();
 			}
 		});
-		EquipmentButton.addActionListener(new ActionListener()
+		/*
+		OrderConfirmationButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				total = 0;
 				MainWindow.Off();
 				EquipmentWindow.On();
 			}
 		});
+		*/
 		
 	}
 }

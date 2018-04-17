@@ -5,7 +5,6 @@ public class Main
 {
 	public static int total;
 	public static boolean suggested = false;
-	public static String RoomOrEquipment; // which one the user starts renting first.
 	public static void main (String args[])
 	{
 		MainWindow.On();

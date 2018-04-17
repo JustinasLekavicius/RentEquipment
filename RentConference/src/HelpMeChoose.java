@@ -10,6 +10,7 @@ import java.awt.List;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 import javax.swing.SpinnerListModel;
 import javax.swing.JTextPane;
 import java.awt.Component;
@@ -35,18 +36,12 @@ import javax.swing.JEditorPane;
 import javax.swing.JProgressBar;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
+import java.awt.Font;
 
 public class HelpMeChoose {
 
-	private JTextField txtmoniSkaiius;
-	private JTextField txtTypeOfEvent;
-	private JTextField txtData;
-	private JTextField txtPradia;
-	private JTextField txtPabaiga;
-
 	static HelpMeChoose window = new HelpMeChoose();
 	JFrame frame = new JFrame();
-	private JButton btnChoose;
 	static void On()
 	{
 		window.frame.setVisible(true);
@@ -56,43 +51,54 @@ public class HelpMeChoose {
 		window.frame.setVisible(false);
 	}
 	public HelpMeChoose() {
+		frame.setTitle("Help me choose!");
+			frame.getContentPane().setBackground(new Color(153, 204, 204));
+			frame.setBackground(new Color(153, 204, 204));
 			frame.setBounds(100, 100, 337, 395);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.getContentPane().setLayout(null);
 			
-			txtmoniSkaiius = new JTextField();
-			txtmoniSkaiius.setText("Number of people");
-			txtmoniSkaiius.setEditable(false);
-			txtmoniSkaiius.setColumns(10);
-			txtmoniSkaiius.setBounds(12, 83, 126, 22);
-			frame.getContentPane().add(txtmoniSkaiius);
+			JTextArea TextTypeOfEvent = new JTextArea();
+			TextTypeOfEvent.setFont(new Font("Dialog", Font.PLAIN, 16));
+			TextTypeOfEvent.setBackground(new Color(153, 204, 204));
+			TextTypeOfEvent.setText("Type of event");
+			TextTypeOfEvent.setEditable(false);
+			TextTypeOfEvent.setColumns(10);
+			TextTypeOfEvent.setBounds(12, 13, 126, 22);
+			frame.getContentPane().add(TextTypeOfEvent);
 			
-			txtTypeOfEvent = new JTextField();
-			txtTypeOfEvent.setText("Type of event");
-			txtTypeOfEvent.setEditable(false);
-			txtTypeOfEvent.setColumns(10);
-			txtTypeOfEvent.setBounds(12, 13, 126, 22);
-			frame.getContentPane().add(txtTypeOfEvent);
+			JSpinner TypeOfEventSpinner = new JSpinner();
+			TypeOfEventSpinner.setModel(new SpinnerListModel(new String[] {"Conference", "VU SA meeting", "Open discusion", "Lecture", "Student for Student (SS)", "Other"}));
+			TypeOfEventSpinner.setBounds(12, 48, 271, 22);
+			frame.getContentPane().add(TypeOfEventSpinner);
 			
-			JSpinner spinner = new JSpinner();
-			spinner.setModel(new SpinnerListModel(new String[] {"Conference", "VU SA meeting", "Open discusion", "Lecture", "Student for Student (SS)", "Other"}));
-			spinner.setBounds(12, 48, 271, 22);
-			frame.getContentPane().add(spinner);
+			JTextArea TextNumberOfPeople = new JTextArea();
+			TextNumberOfPeople.setFont(new Font("Dialog", Font.PLAIN, 16));
+			TextNumberOfPeople.setBackground(new Color(153, 204, 204));
+			TextNumberOfPeople.setText("Number of people");
+			TextNumberOfPeople.setEditable(false);
+			TextNumberOfPeople.setColumns(10);
+			TextNumberOfPeople.setBounds(12, 83, 150, 22);
+			frame.getContentPane().add(TextNumberOfPeople);
 			
-			JSpinner spinner_1 = new JSpinner();
-			spinner_1.setModel(new SpinnerNumberModel(10, 0, 200, 10));
-			spinner_1.setBounds(12, 118, 126, 22);
-			frame.getContentPane().add(spinner_1);
+			JSpinner NumberOfPeopleSpinner = new JSpinner();
+			NumberOfPeopleSpinner.setModel(new SpinnerNumberModel(10, 0, 200, 10));
+			NumberOfPeopleSpinner.setBounds(12, 118, 150, 22);
+			frame.getContentPane().add(NumberOfPeopleSpinner);
 			
-			txtData = new JTextField();
-			txtData.setText("Reservation time:");
-			txtData.setEditable(false);
-			txtData.setColumns(10);
-			txtData.setBounds(12, 153, 126, 22);
-			frame.getContentPane().add(txtData);
+			JTextArea TextDate = new JTextArea();
+			TextDate.setFont(new Font("Dialog", Font.PLAIN, 16));
+			TextDate.setBackground(new Color(153, 204, 204));
+			TextDate.setText("Reservation time:");
+			TextDate.setEditable(false);
+			TextDate.setColumns(10);
+			TextDate.setBounds(12, 153, 133, 22);
+			frame.getContentPane().add(TextDate);
 			
-			JSpinner spinner_2 = new JSpinner();
-			spinner_2.addInputMethodListener(new InputMethodListener() {
+			JSpinner TimeStartSpinner = new JSpinner();
+			TimeStartSpinner.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.HOUR));
+			TimeStartSpinner.setBounds(115, 190, 133, 22);
+			TimeStartSpinner.addInputMethodListener(new InputMethodListener() {
 				public void caretPositionChanged(InputMethodEvent arg0) {
 				}
 
@@ -102,43 +108,45 @@ public class HelpMeChoose {
 					
 				}
 			});
-			spinner_2.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.HOUR));
-			spinner_2.setBounds(163, 193, 120, 22);
-			frame.getContentPane().add(spinner_2);
 			
-			txtPradia = new JTextField();
-			txtPradia.setText("Start");
-			txtPradia.setEditable(false);
-			txtPradia.setColumns(10);
-			txtPradia.setBounds(12, 193, 126, 22);
-			frame.getContentPane().add(txtPradia);
+			JTextArea TextStart = new JTextArea();
+			TextStart.setFont(new Font("Dialog", Font.PLAIN, 16));
+			TextStart.setBackground(new Color(153, 204, 204));
+			TextStart.setText("Start");
+			TextStart.setEditable(false);
+			TextStart.setColumns(10);
+			TextStart.setBounds(12, 193, 91, 22);
+			frame.getContentPane().add(TextStart);
+			frame.getContentPane().add(TimeStartSpinner);
 			
-			txtPabaiga = new JTextField();
-			txtPabaiga.setText("End");
-			txtPabaiga.setEditable(false);
-			txtPabaiga.setColumns(10);
-			txtPabaiga.setBounds(12, 225, 126, 22);
-			frame.getContentPane().add(txtPabaiga);
+			JTextArea TextEnd = new JTextArea();
+			TextEnd.setFont(new Font("Dialog", Font.PLAIN, 16));
+			TextEnd.setBackground(new Color(153, 204, 204));
+			TextEnd.setText("End");
+			TextEnd.setEditable(false);
+			TextEnd.setColumns(10);
+			TextEnd.setBounds(12, 225, 91, 22);
+			frame.getContentPane().add(TextEnd);
 			
-			JSpinner spinner_3 = new JSpinner();
-			spinner_3.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.SECOND));
-			spinner_3.setBounds(163, 225, 120, 22);
-			frame.getContentPane().add(spinner_3);
+			JSpinner TimeEndSpinner = new JSpinner();
+			TimeEndSpinner.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.SECOND));
+			TimeEndSpinner.setBounds(115, 224, 133, 22);
+			frame.getContentPane().add(TimeEndSpinner);
 			
-			JButton btnNewButton = new JButton("Back");
-			btnNewButton.addActionListener(new ActionListener() {
+			JButton BackButton = new JButton("Back");
+			BackButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					RoomWindow backButton = new RoomWindow();
-					RoomWindow.On();
+					
+					OrderWindow.On();
 					HelpMeChoose.Off();
 				}
 			});
-			btnNewButton.setBounds(6, 288, 97, 25);
-			frame.getContentPane().add(btnNewButton);
+			BackButton.setBounds(6, 288, 97, 25);
+			frame.getContentPane().add(BackButton);
 			
-			btnChoose = new JButton("Choose");
-			btnChoose.setBounds(199, 288, 97, 25);
-			frame.getContentPane().add(btnChoose);
+			JButton ChooseButton = new JButton("Choose");
+			ChooseButton.setBounds(199, 288, 97, 25);
+			frame.getContentPane().add(ChooseButton);
 		}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
