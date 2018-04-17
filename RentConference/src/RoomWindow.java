@@ -102,7 +102,7 @@ public class RoomWindow extends Main{
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				suggested = false;
+				
 				RoomWindow.Off();
 				MainWindow.On();
 			}
@@ -121,16 +121,8 @@ public class RoomWindow extends Main{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				RoomOrEquipment = "Room";
-				if (suggested == false) {
 				RoomWindow.Off();
 				SuggestRoomOrEquipment.On();
-				}
-				else if (suggested == true)
-				{
-					RoomWindow.Off();
-					TotalWindow.On();
-				}
-				
 			}
 		});
 	}
