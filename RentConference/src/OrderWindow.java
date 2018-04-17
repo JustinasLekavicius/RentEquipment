@@ -20,6 +20,7 @@ public class OrderWindow extends Main{
 		window.frame.setVisible(false);
 	}
 	public OrderWindow() {
+		
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
 		frame.setBackground(new Color(153, 204, 204));
 		frame.setResizable(false);
@@ -35,13 +36,13 @@ public class OrderWindow extends Main{
 		JButton NextButton = new JButton("Next");
 		NextButton.setBounds(711, 322, 117, 25);
 		frame.getContentPane().add(NextButton);
-		JTextArea txtrPleaseSelectA = new JTextArea();
-		txtrPleaseSelectA.setFont(new Font("Dialog", Font.PLAIN, 16));
-		txtrPleaseSelectA.setBackground(new Color(153, 204, 204));
-		txtrPleaseSelectA.setText("Please select a room.");
-		txtrPleaseSelectA.setEditable(false);
-		txtrPleaseSelectA.setBounds(524, 38, 304, 186);
-		frame.getContentPane().add(txtrPleaseSelectA);
+		JTextArea TextRoom = new JTextArea();
+		TextRoom.setFont(new Font("Dialog", Font.PLAIN, 16));
+		TextRoom.setBackground(new Color(153, 204, 204));
+		TextRoom.setText("Please select a room.");
+		TextRoom.setEditable(false);
+		TextRoom.setBounds(524, 38, 304, 186);
+		frame.getContentPane().add(TextRoom);
 	
 		JRadioButton AuditoriumButton = new JRadioButton ("Auditorium");
 		AuditoriumButton.setBackground(new Color(153, 204, 204));
@@ -287,39 +288,94 @@ lentaCheckBox.addItemListener(new ItemListener()
 
 	}
 });
-AuditoriumButton.addActionListener(new ActionListener()
+AuditoriumButton.addItemListener(new ItemListener()
 {
-	public void actionPerformed(ActionEvent arg0)
-	{
-			txtrPleaseSelectA.setText("The selected room is:\n" + Rooms.auditorija.getName() + "\nthe room can fit " + Rooms.auditorija.getArea() + " people\nthe rent price is " + Rooms.auditorija.getPrice() + " euros for a day.");
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		
+		if (arg0.getStateChange() == ItemEvent.SELECTED)
+		{
+			TextRoom.setText("The selected room is:\n" + Rooms.auditorija.getName() + "\nthe room can fit " + Rooms.auditorija.getArea() + " people\nthe rent price is " + Rooms.auditorija.getPrice() + " euros for a day.");
+			total = total + Rooms.auditorija.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
+		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
+		{
+			total = total - Rooms.auditorija.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
 	}
 });
-HallButton.addActionListener(new ActionListener()
+HallButton.addItemListener(new ItemListener()
 {
-	public void actionPerformed(ActionEvent arg0)
-	{
-			txtrPleaseSelectA.setText("The selected room is:\n" + Rooms.sale.getName() + "\nthe room can fit " + Rooms.sale.getArea() + " people\nthe rent price is " + Rooms.sale.getPrice() + " euros for a day.");
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		
+		if (arg0.getStateChange() == ItemEvent.SELECTED)
+		{
+			TextRoom.setText("The selected room is:\n" + Rooms.sale.getName() + "\nthe room can fit " + Rooms.sale.getArea() + " people\nthe rent price is " + Rooms.sale.getPrice() + " euros for a day.");
+			total = total + Rooms.sale.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
+		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
+		{
+			total = total - Rooms.sale.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
 	}
 });
-RoomButton.addActionListener(new ActionListener()
+RoomButton.addItemListener(new ItemListener()
 {
-	public void actionPerformed(ActionEvent arg0)
-	{
-			txtrPleaseSelectA.setText("The selected room is:\n" + Rooms.kambarys.getName() + "\nthe room can fit " + Rooms.kambarys.getArea() + " people\nthe rent price is " + Rooms.kambarys.getPrice() + " euros for a day.");
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		
+		if (arg0.getStateChange() == ItemEvent.SELECTED)
+		{
+			TextRoom.setText("The selected room is:\n" + Rooms.kambarys.getName() + "\nthe room can fit " + Rooms.kambarys.getArea() + " people\nthe rent price is " + Rooms.kambarys.getPrice() + " euros for a day.");
+			total = total + Rooms.kambarys.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
+		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
+		{
+			total = total - Rooms.kambarys.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
 	}
 });
-ClassroomButton.addActionListener(new ActionListener()
+ClassroomButton.addItemListener(new ItemListener()
 {
-	public void actionPerformed(ActionEvent arg0)
-	{
-			txtrPleaseSelectA.setText("The selected room is:\n" + Rooms.klase.getName() + "\nthe room can fit " + Rooms.klase.getArea() + " people\nthe rent price is " + Rooms.klase.getPrice() + " euros for a day.");
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		
+		if (arg0.getStateChange() == ItemEvent.SELECTED)
+		{
+			TextRoom.setText("The selected room is:\n" + Rooms.klase.getName() + "\nthe room can fit " + Rooms.klase.getArea() + " people\nthe rent price is " + Rooms.klase.getPrice() + " euros for a day.");
+			total = total + Rooms.klase.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
+		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
+		{
+			total = total - Rooms.klase.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
 	}
 });
-ChamberButton.addActionListener(new ActionListener()
+ChamberButton.addItemListener(new ItemListener()
 {
-	public void actionPerformed(ActionEvent arg0)
-	{
-			txtrPleaseSelectA.setText("The selected room is:\n" + Rooms.kambariukas.getName() + "\nthe room can fit " + Rooms.kambariukas.getArea() + " people\nthe rent price is " + Rooms.kambariukas.getPrice() + " euros for a day.");
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		
+		if (arg0.getStateChange() == ItemEvent.SELECTED)
+		{
+			TextRoom.setText("The selected room is:\n" + Rooms.kambariukas.getName() + "\nthe room can fit " + Rooms.kambariukas.getArea() + " people\nthe rent price is " + Rooms.kambariukas.getPrice() + " euros for a day.");
+			total = total + Rooms.kambariukas.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
+		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
+		{
+			total = total - Rooms.kambariukas.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+		}
 	}
 });
 	}
