@@ -5,9 +5,9 @@ import java.util.EnumSet;
 
 import javax.swing.*;
 
-public class RoomWindow extends Main{
+public class OrderWindow extends Main{
 	
-	static RoomWindow window = new RoomWindow();
+	static OrderWindow window = new OrderWindow();
 	JFrame frame = new JFrame();
 	static void On()
 	{
@@ -17,13 +17,13 @@ public class RoomWindow extends Main{
 	{
 		window.frame.setVisible(false);
 	}
-	public RoomWindow() {
+	public OrderWindow() {
 		frame.setResizable(false);
 		frame.setTitle("Rooms");
-		frame.setBounds(100, 100, 466, 351);
+		frame.setBounds(100, 100, 450, 300);
 		frame.getContentPane().setLayout(null);
 		JButton HelpMeButton = new JButton("Help me choose!");
-		HelpMeButton.setBounds(182, 208, 200, 44);
+		HelpMeButton.setBounds(106, 230, 200, 44);
 		frame.getContentPane().add(HelpMeButton);
 		
 		JButton AuditoriumButton = new JButton("Auditorium");
@@ -39,12 +39,18 @@ public class RoomWindow extends Main{
 		frame.getContentPane().add(RoomButton);
 		
 		JButton BackButton = new JButton("Back");
-		BackButton.setBounds(6, 285, 82, 25);
+		BackButton.setBounds(12, 249, 82, 25);
 		frame.getContentPane().add(BackButton);
 		
 		JButton NextButton = new JButton("Next");
-		NextButton.setBounds(372, 285, 82, 25);
+		NextButton.setBounds(321, 240, 117, 25);
 		frame.getContentPane().add(NextButton);
+		
+		TextArea textArea = new TextArea();
+		textArea.setText("Please select a room");
+		textArea.setEditable(false);
+		textArea.setBounds(134, 38, 304, 186);
+		frame.getContentPane().add(textArea);
 		
 		JButton ClassroomButton = new JButton("Classroom");
 		ClassroomButton.setBounds(12, 174, 117, 25);
@@ -53,14 +59,6 @@ public class RoomWindow extends Main{
 		JButton ChamberButton = new JButton("Chamber");
 		ChamberButton.setBounds(12, 137, 117, 25);
 		frame.getContentPane().add(ChamberButton);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(142, 26, 278, 170);
-		frame.getContentPane().add(scrollPane);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		scrollPane.setViewportView(textArea);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		AuditoriumButton.addActionListener(new ActionListener()
@@ -103,7 +101,7 @@ public class RoomWindow extends Main{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				suggested = false;
-				RoomWindow.Off();
+				OrderWindow.Off();
 				MainWindow.On();
 			}
 		});
@@ -112,7 +110,7 @@ public class RoomWindow extends Main{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				
-				RoomWindow.Off();
+				OrderWindow.Off();
 				HelpMeChoose.On();
 			}
 		});
@@ -122,13 +120,8 @@ public class RoomWindow extends Main{
 			{
 				RoomOrEquipment = "Room";
 				if (suggested == false) {
-				RoomWindow.Off();
+				OrderWindow.Off();
 				SuggestRoomOrEquipment.On();
-				}
-				else if (suggested == true)
-				{
-					RoomWindow.Off();
-					TotalWindow.On();
 				}
 				
 			}

@@ -28,13 +28,13 @@ public class MainWindow{
 		JButton EquipmentButton = new JButton("Rent equipment");
 		EquipmentButton.setBounds(124, 150, 200, 50);
 		frame.getContentPane().add(EquipmentButton);
-		/*
+		
 		JButton AboutButton = new JButton("About....");
 		AboutButton.setBounds(333, 0, 117, 25);
 		frame.getContentPane().add(AboutButton);
-		*/
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		/*
+		
 		AboutButton.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent arg0)
@@ -42,7 +42,7 @@ public class MainWindow{
 						AboutWindow.On();
 					}
 				});
-				*/
+				
 		RoomButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)

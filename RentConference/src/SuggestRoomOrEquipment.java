@@ -39,6 +39,7 @@ public class SuggestRoomOrEquipment extends Main {
 		YesButton.setBounds(330, 137, 117, 25);
 		frame.getContentPane().add(YesButton);
 		if (RoomOrEquipment.equals("Equipment")) {
+			suggested = true;
 			Text.setText("Currently your order is " + total +" EUR. Would like to rent a room as well?");
 			YesButton.addActionListener(new ActionListener()
 			{
@@ -48,8 +49,18 @@ public class SuggestRoomOrEquipment extends Main {
 					RoomWindow.On();
 				}
 			});
+			NoButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent arg0)
+				{
+					suggested = false;
+					SuggestRoomOrEquipment.Off();
+					MainWindow.On();
+				}
+			});
 		}
 			else if (RoomOrEquipment.equals("Room")) {
+				suggested = true;
 				Text.setText("Currently your order is " + total +" EUR. Would like to rent equipment as well?");
 		YesButton.addActionListener(new ActionListener()
 		{
@@ -57,6 +68,15 @@ public class SuggestRoomOrEquipment extends Main {
 			{
 				SuggestRoomOrEquipment.Off();
 				EquipmentWindow.On();
+			}
+		});
+		NoButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				suggested = false;
+				SuggestRoomOrEquipment.Off();
+				MainWindow.On();
 			}
 		});
 			}

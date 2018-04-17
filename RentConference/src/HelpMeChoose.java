@@ -75,8 +75,8 @@ public class HelpMeChoose {
 			frame.getContentPane().add(txtTypeOfEvent);
 			
 			JSpinner spinner = new JSpinner();
-			spinner.setModel(new SpinnerListModel(new String[] {"Conference", "VU SA meeting", "Open discusion", "lecture", "Student for Student (SS)", "Other"}));
-			spinner.setBounds(12, 48, 126, 22);
+			spinner.setModel(new SpinnerListModel(new String[] {"Conference", "VU SA meeting", "Open discusion", "Lecture", "Student for Student (SS)", "Other"}));
+			spinner.setBounds(12, 48, 271, 22);
 			frame.getContentPane().add(spinner);
 			
 			JSpinner spinner_1 = new JSpinner();
@@ -94,6 +94,12 @@ public class HelpMeChoose {
 			JSpinner spinner_2 = new JSpinner();
 			spinner_2.addInputMethodListener(new InputMethodListener() {
 				public void caretPositionChanged(InputMethodEvent arg0) {
+				}
+
+				@Override
+				public void inputMethodTextChanged(InputMethodEvent arg0) {
+					// TODO Auto-generated method stub
+					
 				}
 			});
 			spinner_2.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.HOUR));
