@@ -141,11 +141,11 @@ public class HelpMeChoose {
 					HelpMeChoose.Off();
 				}
 			});
-			BackButton.setBounds(6, 288, 97, 25);
+			BackButton.setBounds(6, 358, 97, 25);
 			frame.getContentPane().add(BackButton);
 			
 			JButton ChooseButton = new JButton("Choose");
-			ChooseButton.setBounds(199, 288, 97, 25);
+			ChooseButton.setBounds(228, 358, 97, 25);
 			frame.getContentPane().add(ChooseButton);
 		}
 	private static void addPopup(Component component, final JPopupMenu popup) {

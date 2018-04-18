@@ -6,11 +6,14 @@ import java.awt.event.ItemListener;
 import java.util.EnumSet;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class OrderWindow extends Main{
 	
 	static OrderWindow window = new OrderWindow();
 	JFrame frame = new JFrame();
+	static int NumberOfDays = 0;
 	static void On()
 	{
 		window.frame.setVisible(true);
@@ -27,17 +30,9 @@ public class OrderWindow extends Main{
 		frame.setTitle("Order window");
 		frame.setBounds(100, 100, 843, 359);
 		frame.getContentPane().setLayout(null);
-		JButton HelpMeButton = new JButton("Help me choose!");
-		HelpMeButton.setBounds(563, 230, 200, 44);
-		frame.getContentPane().add(HelpMeButton);
-		JButton BackButton = new JButton("Back");
-		BackButton.setBounds(12, 322, 82, 25);
-		frame.getContentPane().add(BackButton);
-		JButton NextButton = new JButton("Next");
-		NextButton.setBounds(711, 322, 117, 25);
-		frame.getContentPane().add(NextButton);
+				
 		JTextArea TextRoom = new JTextArea();
-		TextRoom.setFont(new Font("Dialog", Font.PLAIN, 16));
+		TextRoom.setFont(new Font("Dialog", Font.PLAIN, 17));
 		TextRoom.setBackground(new Color(153, 204, 204));
 		TextRoom.setText("Please select a room.");
 		TextRoom.setEditable(false);
@@ -58,6 +53,7 @@ public class OrderWindow extends Main{
 		RoomButton.setBackground(new Color(153, 204, 204));
 		RoomButton.setBounds(378, 75, 117, 25);
 		frame.getContentPane().add(RoomButton);		
+		
 		JRadioButton ClassroomButton = new JRadioButton("Classroom");
 		ClassroomButton.setBackground(new Color(153, 204, 204));
 		ClassroomButton.setBounds(378, 186, 117, 25);
@@ -75,56 +71,236 @@ public class OrderWindow extends Main{
 		RoomButtonGroup.add(HallButton);
 		RoomButtonGroup.add(RoomButton);
 		
-
+		JButton HelpMeButton = new JButton("Help me choose!");
+		HelpMeButton.setBounds(563, 230, 200, 44);
+		frame.getContentPane().add(HelpMeButton);
+		
+		JButton BackButton = new JButton("Back");
+		BackButton.setBounds(12, 322, 82, 25);
+		frame.getContentPane().add(BackButton);
+		
+		JButton NextButton = new JButton("Next");
+		NextButton.setBounds(711, 322, 117, 25);
+		frame.getContentPane().add(NextButton);
+		
 		JTextArea TotalText = new JTextArea();
 		TotalText.setBackground(new Color(153, 204, 204));
 		TotalText.setFont(new Font("Dialog", Font.PLAIN, 20));
 		TotalText.setEditable(false);
 		TotalText.setText("Total: " + total + " EUR");
-		TotalText.setBounds(250, 307, 286, 32);
+		TotalText.setBounds(498, 320, 178, 32);
 		frame.getContentPane().add(TotalText);
 		
-		JCheckBox projektoriusCheckBox = new JCheckBox("Projector (80 EUR)");
-		projektoriusCheckBox.setBackground(new Color(153, 204, 204));
-		projektoriusCheckBox.setBounds(12, 53, 156, 23);
-		frame.getContentPane().add(projektoriusCheckBox);
+		JTextPane ProjectorText = new JTextPane();
+		ProjectorText.setBackground(new Color(153, 204, 204));
+		ProjectorText.setBounds(77, 75, 156, 23);
+		ProjectorText.setText(Equipment.projektorius.getName() + " (" + Equipment.projektorius.getPrice() + " EUR)");
+		frame.getContentPane().add(ProjectorText);
 		
-		JCheckBox garsiakalbisCheckBox = new JCheckBox("Large Speaker (40 EUR)");
-		garsiakalbisCheckBox.setBackground(new Color(153, 204, 204));
-		garsiakalbisCheckBox.setBounds(12, 89, 212, 23);
-		frame.getContentPane().add(garsiakalbisCheckBox);
+		JTextPane LargeSpeakerText = new JTextPane();
+		LargeSpeakerText.setBackground(new Color(153, 204, 204));
+		LargeSpeakerText.setBounds(77, 105, 156, 23);
+		LargeSpeakerText.setText(Equipment.garsiakalbis.getName() + " (" + Equipment.garsiakalbis.getPrice() + " EUR)");
+		frame.getContentPane().add(LargeSpeakerText);
 		
-		JCheckBox lazerisCheckBox = new JCheckBox("Laser pointer (15 EUR)");
-		lazerisCheckBox.setBackground(new Color(153, 204, 204));
-		lazerisCheckBox.setBounds(12, 116, 212, 23);
-		frame.getContentPane().add(lazerisCheckBox);
+		JTextPane LaserPointerText = new JTextPane();
+		LaserPointerText.setBackground(new Color(153, 204, 204));
+		LaserPointerText.setBounds(77, 136, 212, 23);
+		LaserPointerText.setText(Equipment.lazeris.getName() + " (" + Equipment.lazeris.getPrice() + " EUR)");
+		frame.getContentPane().add(LaserPointerText);
 		
-		JCheckBox mikrofonasCheckBox = new JCheckBox("Microphone (20 EUR)");
-		mikrofonasCheckBox.setBackground(new Color(153, 204, 204));
-		mikrofonasCheckBox.setBounds(12, 143, 191, 23);
-		frame.getContentPane().add(mikrofonasCheckBox);
+		JTextPane MicrophoneText = new JTextPane();
+		MicrophoneText.setBackground(new Color(153, 204, 204));
+		MicrophoneText.setBounds(77, 163, 191, 23);
+		MicrophoneText.setText(Equipment.mikrofonas.getName() + " (" + Equipment.mikrofonas.getPrice() + " EUR)");
+		frame.getContentPane().add(MicrophoneText);
 		
-		JCheckBox lentaCheckBox = new JCheckBox("White board (25 EUR)");
-		lentaCheckBox.setBackground(new Color(153, 204, 204));
-		lentaCheckBox.setBounds(12, 177, 218, 23);
-		frame.getContentPane().add(lentaCheckBox);
+		JTextPane WhiteBoardText = new JTextPane();
+		WhiteBoardText.setBackground(new Color(153, 204, 204));
+		WhiteBoardText.setBounds(77, 197, 218, 23);
+		WhiteBoardText.setText(Equipment.lenta.getName() + " (" + Equipment.lenta.getPrice() + " EUR)");
+		frame.getContentPane().add(WhiteBoardText);
 		
-		JCheckBox ekranasCheckBox = new JCheckBox("Projection screen (45 EUR)");
-		ekranasCheckBox.setBackground(new Color(153, 204, 204));
-		ekranasCheckBox.setBounds(12, 240, 218, 23);
-		frame.getContentPane().add(ekranasCheckBox);
+		JTextPane ProjectionScreenText = new JTextPane();
+		ProjectionScreenText.setBackground(new Color(153, 204, 204));
+		ProjectionScreenText.setBounds(77, 260, 218, 23);
+		ProjectionScreenText.setText(Equipment.ekranas.getName() + " (" + Equipment.ekranas.getPrice() + " EUR)");
+		frame.getContentPane().add(ProjectionScreenText);
 		
-		JCheckBox stiprintuvasCheckBox = new JCheckBox("Amplifier (60 EUR)");
-		stiprintuvasCheckBox.setBackground(new Color(153, 204, 204));
-		stiprintuvasCheckBox.setBounds(12, 213, 156, 23);
-		frame.getContentPane().add(stiprintuvasCheckBox);
+		JTextPane AmplifierText = new JTextPane();
+		AmplifierText.setBackground(new Color(153, 204, 204));
+		AmplifierText.setBounds(77, 233, 156, 23);
+		AmplifierText.setText(Equipment.stiprintuvas.getName() + " (" + Equipment.stiprintuvas.getPrice() + " EUR)");
+		frame.getContentPane().add(AmplifierText);
 		
+		JSpinner ProjectorSpinner = new JSpinner();
+		ProjectorSpinner.setEditor(new JSpinner.DefaultEditor(ProjectorSpinner));
+		ProjectorSpinner.addChangeListener(new ChangeListener()
+		{
+			int change = 0;
+			public void stateChanged(ChangeEvent arg0) {
+				if (change < (int) ProjectorSpinner.getValue())
+				total = total + Equipment.projektorius.getPrice();
+				else if (change > (int) ProjectorSpinner.getValue())
+				total = total -  Equipment.projektorius.getPrice();
+				TotalText.setText("Total: " + total + " EUR");
+				change = (int) ProjectorSpinner.getValue();
+	}
+		});
+		ProjectorSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		ProjectorSpinner.setBounds(12, 77, 53, 20);
+		frame.getContentPane().add(ProjectorSpinner);
+		
+		JSpinner LargeSpeakerSpinner = new JSpinner();
+		LargeSpeakerSpinner.setEditor(new JSpinner.DefaultEditor(LargeSpeakerSpinner));
+		LargeSpeakerSpinner.addChangeListener(new ChangeListener()
+		{
+			int change = 0;
+			public void stateChanged(ChangeEvent arg0) {
+				if (change < (int) LargeSpeakerSpinner.getValue())
+				total = total + Equipment.garsiakalbis.getPrice();
+				else if (change > (int) LargeSpeakerSpinner.getValue())
+				total = total -  Equipment.garsiakalbis.getPrice();
+				TotalText.setText("Total: " + total + " EUR");
+				change = (int) LargeSpeakerSpinner.getValue();
+	}
+		});
+		LargeSpeakerSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		LargeSpeakerSpinner.setBounds(12, 113, 53, 20);
+		frame.getContentPane().add(LargeSpeakerSpinner);
+		
+		JSpinner LaserPointerSpinner = new JSpinner();
+		LaserPointerSpinner.setEditor(new JSpinner.DefaultEditor(LaserPointerSpinner));
+
+		LaserPointerSpinner.addChangeListener(new ChangeListener()
+		{
+			int change = 0;
+			public void stateChanged(ChangeEvent arg0) {
+				if (change < (int) LaserPointerSpinner.getValue())
+				total = total + Equipment.lazeris.getPrice();
+				else if (change > (int) LaserPointerSpinner.getValue())
+				total = total -  Equipment.lazeris.getPrice();
+				TotalText.setText("Total: " + total + " EUR");
+				change = (int) LaserPointerSpinner.getValue();
+	}
+		});
+		LaserPointerSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		LaserPointerSpinner.setBounds(12, 140, 53, 20);
+		frame.getContentPane().add(LaserPointerSpinner);
+		
+		JSpinner MicrophoneSpinner = new JSpinner();
+		MicrophoneSpinner.setEditor(new JSpinner.DefaultEditor(MicrophoneSpinner));
+		MicrophoneSpinner.addChangeListener(new ChangeListener()
+		{
+			int change = 0;
+			public void stateChanged(ChangeEvent arg0) {
+				if (change < (int) MicrophoneSpinner.getValue())
+				total = total + Equipment.mikrofonas.getPrice();
+				else if (change > (int) MicrophoneSpinner.getValue())
+				total = total -  Equipment.mikrofonas.getPrice();
+				TotalText.setText("Total: " + total + " EUR");
+				change = (int) MicrophoneSpinner.getValue();
+			}
+		});
+		MicrophoneSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		MicrophoneSpinner.setBounds(12, 170, 53, 20);
+		frame.getContentPane().add(MicrophoneSpinner);
+		
+		JSpinner WhiteBoardSpinner = new JSpinner();
+		WhiteBoardSpinner.setEditor(new JSpinner.DefaultEditor(WhiteBoardSpinner));
+		WhiteBoardSpinner.addChangeListener(new ChangeListener()
+		{
+			int change = 0;
+			public void stateChanged(ChangeEvent arg0) {
+				if (change < (int) WhiteBoardSpinner.getValue())
+				total = total + Equipment.lenta.getPrice();
+				else if (change > (int) WhiteBoardSpinner.getValue())
+				total = total -  Equipment.lenta.getPrice();
+				TotalText.setText("Total: " + total + " EUR");
+				change = (int) WhiteBoardSpinner.getValue();
+	}
+		});
+		WhiteBoardSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		WhiteBoardSpinner.setBounds(12, 201, 53, 20);
+		frame.getContentPane().add(WhiteBoardSpinner);
+		
+		JSpinner AmplifierSpinner = new JSpinner();
+		AmplifierSpinner.setEditor(new JSpinner.DefaultEditor(AmplifierSpinner));
+		AmplifierSpinner.addChangeListener(new ChangeListener()
+				{
+			int change = 0;
+			public void stateChanged(ChangeEvent arg0) {
+				if (change < (int) AmplifierSpinner.getValue())
+				total = total + Equipment.stiprintuvas.getPrice();
+				else if (change > (int) AmplifierSpinner.getValue())
+				total = total -  Equipment.stiprintuvas.getPrice();
+				TotalText.setText("Total: " + total + " EUR");
+				change = (int) AmplifierSpinner.getValue();
+			}
+				});
+		AmplifierSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		AmplifierSpinner.setBounds(12, 237, 53, 20);
+		frame.getContentPane().add(AmplifierSpinner);
+		
+		JSpinner ProjectionScreenSpinner = new JSpinner();
+		ProjectionScreenSpinner.setEditor(new JSpinner.DefaultEditor(ProjectionScreenSpinner));
+		ProjectionScreenSpinner.addChangeListener(new ChangeListener()
+		{
+			int change = 0;
+		public void stateChanged(ChangeEvent arg0) {
+			if (change < (int) ProjectionScreenSpinner.getValue())
+			total = total + Equipment.ekranas.getPrice();
+			else if (change > (int) ProjectionScreenSpinner.getValue())
+			total = total -  Equipment.ekranas.getPrice();
+			TotalText.setText("Total: " + total + " EUR");
+			change = (int) ProjectionScreenSpinner.getValue();
+	}
+
+		});
+		ProjectionScreenSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		ProjectionScreenSpinner.setBounds(12, 264, 53, 20);
+		frame.getContentPane().add(ProjectionScreenSpinner);
+		
+		JTextArea EquipmentText = new JTextArea();
+		EquipmentText.setText("Please select the needed equipment.");
+		EquipmentText.setFont(new Font("Dialog", Font.PLAIN, 17));
+		EquipmentText.setEditable(false);
+		EquipmentText.setBackground(new Color(153, 204, 204));
+		EquipmentText.setBounds(25, 31, 345, 32);
+		frame.getContentPane().add(EquipmentText);
+		
+		JTextArea NumberOfDaysText = new JTextArea();
+		NumberOfDaysText.setText("Number of days:");
+		NumberOfDaysText.setFont(new Font("Dialog", Font.PLAIN, 20));
+		NumberOfDaysText.setEditable(false);
+		NumberOfDaysText.setBackground(new Color(153, 204, 204));
+		NumberOfDaysText.setBounds(151, 315, 178, 32);
+		frame.getContentPane().add(NumberOfDaysText);
+		
+		JSpinner NumberOfDaysSpinner = new JSpinner();
+		NumberOfDaysSpinner.setEditor(new JSpinner.DefaultEditor(NumberOfDaysSpinner));
+		NumberOfDaysSpinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		NumberOfDaysSpinner.addChangeListener(new ChangeListener()
+		{
+			int DayChange = 0;
+			public void stateChanged(ChangeEvent arg0) {
+				NumberOfDays = (int) NumberOfDaysSpinner.getValue();
+				if (DayChange < (int) NumberOfDaysSpinner.getValue())
+				total = total + (total * NumberOfDays);
+				else if (DayChange > (int) NumberOfDaysSpinner.getValue())
+					total = total - (total * NumberOfDays);
+				TotalText.setText("Total: " + total + " EUR");
+				DayChange = (int) NumberOfDaysSpinner.getValue();
+			}
+		});
+		NumberOfDaysSpinner.setBounds(327, 320, 53, 20);
+		frame.getContentPane().add(NumberOfDaysSpinner);
+				
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BackButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				suggested = false;
 				OrderWindow.Off();
 				MainWindow.On();
 			}
@@ -142,152 +318,10 @@ public class OrderWindow extends Main{
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (suggested == false) {
-				OrderWindow.Off();
-				}
 				
 			}
 		});
-		projektoriusCheckBox.addItemListener(new ItemListener()
-		{
-			private int change = 0;
-			@Override
-			public void itemStateChanged(ItemEvent arg0) {
-				// TODO Auto-generated method stub
-				if (arg0.getStateChange() == ItemEvent.SELECTED)
-				{
-				total = total + Equipment.projektorius.getPrice();
-				change = Equipment.projektorius.getPrice();
-				TotalText.setText("Total: " + total + " EUR");
-				}
-				else 
-				{
-					total = total - change;
-					TotalText.setText("Total: " + total + " EUR");
-				}
 
-			}
-		});
-ekranasCheckBox.addItemListener(new ItemListener()
-{
-	private int change = 0;
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
-		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-		total = total + Equipment.ekranas.getPrice();
-		change = Equipment.ekranas.getPrice();
-		TotalText.setText("Total: " + total + " EUR");
-		}
-		else 
-		{
-			total = total - change;
-			TotalText.setText("Total: " + total + " EUR");
-		}
-
-	}
-});
-garsiakalbisCheckBox.addItemListener(new ItemListener()
-{
-	private int change = 0;
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
-		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-		total = total + Equipment.garsiakalbis.getPrice();
-		change = Equipment.garsiakalbis.getPrice();
-		TotalText.setText("Total: " + total + " EUR");
-		}
-		else 
-		{
-			total = total - change;
-			TotalText.setText("Total: " + total + " EUR");
-		}
-
-	}
-});
-lazerisCheckBox.addItemListener(new ItemListener()
-{
-	private int change = 0;
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
-		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-		total = total + Equipment.lazeris.getPrice();
-		change = Equipment.lazeris.getPrice();
-		TotalText.setText("Total: " + total + " EUR");
-		}
-		else 
-		{
-			total = total - change;
-			TotalText.setText("Total: " + total + " EUR");
-		}
-
-	}
-});
-mikrofonasCheckBox.addItemListener(new ItemListener()
-{
-	private int change = 0;
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
-		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-		total = total + Equipment.mikrofonas.getPrice();
-		change = Equipment.mikrofonas.getPrice();
-		TotalText.setText("Total: " + total + " EUR");
-		}
-		else 
-		{
-			total = total - change;
-			TotalText.setText("Total: " + total + " EUR");
-		}
-
-	}
-});
-stiprintuvasCheckBox.addItemListener(new ItemListener()
-{
-	private int change = 0;
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
-		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-		total = total + Equipment.stiprintuvas.getPrice();
-		change = Equipment.stiprintuvas.getPrice();
-		TotalText.setText("Total: " + total + " EUR");
-		}
-		else 
-		{
-			total = total - change;
-			TotalText.setText("Total: " + total + " EUR");
-		}
-
-	}
-});
-lentaCheckBox.addItemListener(new ItemListener()
-{
-	private int change = 0;
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		// TODO Auto-generated method stub
-		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-		total = total + Equipment.lenta.getPrice();
-		change = Equipment.lenta.getPrice();
-		TotalText.setText("Total: " + total + " EUR");
-		}
-		else 
-		{
-			total = total - change;
-			TotalText.setText("Total: " + total + " EUR");
-		}
-
-	}
-});
 AuditoriumButton.addItemListener(new ItemListener()
 {
 	@Override

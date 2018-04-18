@@ -3,14 +3,15 @@ import javax.swing.*;
 
 public class Main 
 {
-	public static int total;
-	public static boolean suggested = false;
+	public static int total = 0;
+	
 	public static void main (String args[])
 	{
 		MainWindow.On();
 	}
 }
-
+//TODO: Padaryt, jog Number of Days spinneris teisingai skaičiuotų TOTAL;
+//TODO: Padaryt, jog paspaudus "Start a new order" mygtuką viskas atsižymėtų ir Total grįžtų į 0.
 /** 
  * 
  * 
