@@ -12,18 +12,26 @@ import javax.swing.event.ChangeListener;
 public class OrderWindow extends Main{
 	
 	static OrderWindow window = new OrderWindow();
-	JFrame frame = new JFrame();
-	static int NumberOfDays = 0;
+    JFrame frame = new JFrame();
+    static int NumberOfDays = 0;
 	static void On()
 	{
 		window.frame.setVisible(true);
+		
 	}
 	static void Off()
 	{
 		window.frame.setVisible(false);
+
 	}
+	static void clearAll(ButtonGroup group, JTextArea text)
+	{
+		group.clearSelection();
+		text.setText("Total: " + total + " EUR");
+	}
+	
 	public OrderWindow() {
-		
+		total = 0;
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
 		frame.setBackground(new Color(153, 204, 204));
 		frame.setResizable(false);
@@ -65,6 +73,7 @@ public class OrderWindow extends Main{
 		frame.getContentPane().add(ChamberButton);
 		
 		ButtonGroup RoomButtonGroup = new ButtonGroup();
+		
 		RoomButtonGroup.add(ClassroomButton);
 		RoomButtonGroup.add(ChamberButton);
 		RoomButtonGroup.add(AuditoriumButton);
@@ -412,5 +421,7 @@ ChamberButton.addItemListener(new ItemListener()
 		}
 	}
 });
-	}
+	
+	clearAll(RoomButtonGroup, TotalText);
+}
 }

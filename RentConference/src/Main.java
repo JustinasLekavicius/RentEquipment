@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class Main 
 {
-	public static int total = 0;
+	static int total = 0;
 	
 	public static void main (String args[])
 	{

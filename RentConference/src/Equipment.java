@@ -1,13 +1,13 @@
 public enum Equipment
 {	
-	//			PAVADINIMAS	KAINA
-	projektorius("Projector", 80),
-	garsiakalbis("Large speaker", 40),
-	lazeris("Laser pointer", 15),
-	mikrofonas("Microphone", 20),
-	lenta("White board", 25),
-	ekranas("Tripod projection screen", 45),
-	stiprintuvas("Amplifier", 60);
+	//			PAVADINIMAS	KAINA DIENAI
+	projektorius("Projector", 8),
+	garsiakalbis("Large speaker", 4),
+	lazeris("Laser pointer", 2),
+	mikrofonas("Microphone", 5),
+	lenta("White board", 7),
+	ekranas("Tripod projection screen", 5),
+	stiprintuvas("Amplifier", 6);
 	
 	
 	private final String pavadinimas;

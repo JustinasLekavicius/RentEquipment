@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class MainWindow extends Main{
+public class MainWindow extends OrderWindow {
 	
 	static MainWindow window = new MainWindow();
 	JFrame frame = new JFrame();
@@ -57,9 +57,13 @@ public class MainWindow extends Main{
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				if (total != 0)
+				OrderWarningWindow.On();
+				else {
 				total = 0;
 				MainWindow.Off();
 				OrderWindow.On();
+				}
 			}
 		});
 		/*
