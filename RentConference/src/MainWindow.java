@@ -57,26 +57,25 @@ public class MainWindow extends OrderWindow {
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (total != 0)
+				if (OrderStarted == true)
 				OrderWarningWindow.On();
 				else {
+				OrderStarted = true;
 				total = 0;
 				MainWindow.Off();
 				OrderWindow.On();
 				}
 			}
 		});
-		/*
+		
 		OrderConfirmationButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				total = 0;
-				MainWindow.Off();
-				EquipmentWindow.On();
+				JOptionPane.showMessageDialog(null, "Your current order is " + finalTotal + " EUR.");
 			}
 		});
-		*/
+		
 		
 	}
 }

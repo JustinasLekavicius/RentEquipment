@@ -289,7 +289,7 @@ public class OrderWindow extends Main{
 		BackButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
-			{
+			{	finalTotal = total;
 				RoomButtonGroup.clearSelection();
 				ProjectorSpinner.setValue(0);
 				LargeSpeakerSpinner.setValue(0);
