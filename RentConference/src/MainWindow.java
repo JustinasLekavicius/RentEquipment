@@ -57,7 +57,7 @@ public class MainWindow extends OrderWindow {
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (OrderStarted == true)
+				if (finalTotal != 0 && OrderStarted == true)
 				OrderWarningWindow.On();
 				else {
 				OrderStarted = true;
