@@ -15,6 +15,7 @@ public class Main
 //TODO: Padaryt, jog Number of Days spinneris teisingai skaičiuotų TOTAL;                          ////////DONE. REIKIA PATESTUOT/////////
 //TODO: Padaryt, jog paspaudus "Start a new order" mygtuką viskas atsižymėtų ir Total grįžtų į 0.  ////////DONE. REIKIA PATESTUOT/////////
 
+
 /*REIKALAVIMAI:
  DONE   * At least 6 classes must be defined.                                                                            
  		*Usage of inheritance. Your defined class is to be inherited. Extension of the Java API class is not counted.
