@@ -317,7 +317,19 @@ public class OrderWindow extends Main{
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				
+				finalTotal = total;
+				RoomButtonGroup.clearSelection();
+				ProjectorSpinner.setValue(0);
+				LargeSpeakerSpinner.setValue(0);
+				LaserPointerSpinner.setValue(0);
+				MicrophoneSpinner.setValue(0);
+				WhiteBoardSpinner.setValue(0);
+				ProjectionScreenSpinner.setValue(0);
+				AmplifierSpinner.setValue(0);
+				TotalText.setText("Total: " + 0 + " EUR");
+				NumberOfDaysSpinner.setValue(1);
+				OrderWindow.Off();
+				OrderConfirmation.On();
 			}
 		});
 

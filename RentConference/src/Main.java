@@ -10,11 +10,9 @@ public class Main
 	public static void main (String args[])
 	{
 		MainWindow.On();
+		DataInput.ReadRoom();
 	}
 }
-//TODO: Padaryt, jog Number of Days spinneris teisingai skaičiuotų TOTAL;                          ////////DONE. REIKIA PATESTUOT/////////
-//TODO: Padaryt, jog paspaudus "Start a new order" mygtuką viskas atsižymėtų ir Total grįžtų į 0.  ////////DONE. REIKIA PATESTUOT/////////
-
 
 /*REIKALAVIMAI:
  DONE   * At least 6 classes must be defined.                                                                            

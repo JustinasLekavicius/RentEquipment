@@ -1,6 +1,6 @@
 public enum Rooms
 {	
-	//			PAVADINIMAS	 ZMONIU TALPA	KAINA 
+	//				NAME		CAPACITY PRICE	USE 
 	auditorija("Large auditorium", 100, 30, "Koncertas"),
 	sale("Big hall", 70, 20, "Konferencija"),
 	kambarys("Medium sized room", 30, 10, "Prezentacija"),

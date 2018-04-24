@@ -55,6 +55,7 @@ public class OrderWarningWindow extends Main {
 			public void actionPerformed(ActionEvent arg0) {
 				total = 0;
 				OrderWarningWindow.Off();
+				MainWindow.Off();
 				OrderWindow.On();
 			}
 			

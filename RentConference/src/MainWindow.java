@@ -71,9 +71,15 @@ public class MainWindow extends OrderWindow {
 		OrderConfirmationButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
+			{	if (finalTotal != 0)
 			{
-				JOptionPane.showMessageDialog(null, "Your current order is " + finalTotal + " EUR.");
+				MainWindow.Off();
+				OrderConfirmation.On();
 			}
+			else JOptionPane.showMessageDialog(null, "You have not started your order yet!");
+			
+			}
+			
 		});
 		
 		
