@@ -38,10 +38,15 @@ public class OrderConfirmation extends Main {
 		JTextArea TotalOrder = new JTextArea();
 		TotalOrder.setFont(new Font("Dialog", Font.PLAIN, 17));
 		TotalOrder.setBackground(new Color(153, 204, 204));
-		TotalOrder.setText("Total: "+ finalTotal + " EUR");
+		for (Equipment items: Equipment.values()) {
+			if(items.getOrdered() != 0)
+		TotalOrder.append(items.getName() + " " + items.getOrdered() + " units for " + (items.getPrice() * items.getOrdered()) + " EUR \n");
+		}
+		TotalOrder.append("Total: " + finalTotal + " EUR \n");
 		TotalOrder.setEditable(false);
 		TotalOrder.setBounds(70, 115, 525, 271);
 		frame.getContentPane().add(TotalOrder);
+		
 		JTextPane ConfirmationText = new JTextPane();
 		ConfirmationText.setText("Are you sure you want to confirm your order?");
 		ConfirmationText.setFont(new Font("Dialog", Font.BOLD, 20));

@@ -47,7 +47,7 @@ public class OrderWindow extends Main{
 		frame.setBackground(new Color(153, 204, 204));
 		frame.setResizable(false);
 		frame.setTitle("Order window");
-		frame.setBounds(100, 100, 843, 359);
+		frame.setBounds(100, 100, 843, 502);
 		frame.getContentPane().setLayout(null);
 				
 		JTextArea TextRoom = new JTextArea();
@@ -96,11 +96,11 @@ public class OrderWindow extends Main{
 		frame.getContentPane().add(HelpMeButton);
 		
 		JButton BackButton = new JButton("Back");
-		BackButton.setBounds(12, 322, 82, 25);
+		BackButton.setBounds(12, 460, 82, 25);
 		frame.getContentPane().add(BackButton);
 		
 		JButton NextButton = new JButton("Next");
-		NextButton.setBounds(711, 322, 117, 25);
+		NextButton.setBounds(711, 460, 117, 25);
 		frame.getContentPane().add(NextButton);
 		
 		JTextArea TotalText = new JTextArea();
@@ -108,49 +108,49 @@ public class OrderWindow extends Main{
 		TotalText.setFont(new Font("Dialog", Font.PLAIN, 12));
 		TotalText.setEditable(false);
 		TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
-		TotalText.setBounds(498, 320, 178, 32);
+		TotalText.setBounds(498, 458, 178, 32);
 		frame.getContentPane().add(TotalText);
 		
 		JTextPane ProjectorText = new JTextPane();
 		ProjectorText.setBackground(new Color(153, 204, 204));
-		ProjectorText.setBounds(77, 75, 156, 23);
-		ProjectorText.setText(Equipment.projektorius.getName() + " (" + Equipment.projektorius.getPrice() + " EUR)");
+		ProjectorText.setBounds(77, 75, 156, 44);
+		ProjectorText.setText(Equipment.projektorius.getName() + " (" + Equipment.projektorius.getPrice() + " EUR), available: " + Equipment.projektorius.getAvailable());
 		frame.getContentPane().add(ProjectorText);
 		
 		JTextPane LargeSpeakerText = new JTextPane();
 		LargeSpeakerText.setBackground(new Color(153, 204, 204));
-		LargeSpeakerText.setBounds(77, 105, 156, 23);
-		LargeSpeakerText.setText(Equipment.garsiakalbis.getName() + " (" + Equipment.garsiakalbis.getPrice() + " EUR)");
+		LargeSpeakerText.setBounds(77, 120, 156, 54);
+		LargeSpeakerText.setText(Equipment.garsiakalbis.getName() + " (" + Equipment.garsiakalbis.getPrice() + " EUR), available: " + Equipment.garsiakalbis.getAvailable());
 		frame.getContentPane().add(LargeSpeakerText);
 		
 		JTextPane LaserPointerText = new JTextPane();
 		LaserPointerText.setBackground(new Color(153, 204, 204));
-		LaserPointerText.setBounds(77, 136, 212, 23);
-		LaserPointerText.setText(Equipment.lazeris.getName() + " (" + Equipment.lazeris.getPrice() + " EUR)");
+		LaserPointerText.setBounds(77, 168, 212, 55);
+		LaserPointerText.setText(Equipment.lazeris.getName() + " (" + Equipment.lazeris.getPrice() + " EUR), available: " + Equipment.lazeris.getAvailable());
 		frame.getContentPane().add(LaserPointerText);
 		
 		JTextPane MicrophoneText = new JTextPane();
 		MicrophoneText.setBackground(new Color(153, 204, 204));
-		MicrophoneText.setBounds(77, 163, 191, 23);
-		MicrophoneText.setText(Equipment.mikrofonas.getName() + " (" + Equipment.mikrofonas.getPrice() + " EUR)");
+		MicrophoneText.setBounds(77, 219, 191, 51);
+		MicrophoneText.setText(Equipment.mikrofonas.getName() + " (" + Equipment.mikrofonas.getPrice() + " EUR), available: " + Equipment.mikrofonas.getAvailable());
 		frame.getContentPane().add(MicrophoneText);
 		
 		JTextPane WhiteBoardText = new JTextPane();
 		WhiteBoardText.setBackground(new Color(153, 204, 204));
-		WhiteBoardText.setBounds(77, 197, 218, 23);
-		WhiteBoardText.setText(Equipment.lenta.getName() + " (" + Equipment.lenta.getPrice() + " EUR)");
+		WhiteBoardText.setBounds(77, 326, 218, 56);
+		WhiteBoardText.setText(Equipment.lenta.getName() + " (" + Equipment.lenta.getPrice() + " EUR), available: " + Equipment.lenta.getAvailable());
 		frame.getContentPane().add(WhiteBoardText);
 		
 		JTextPane ProjectionScreenText = new JTextPane();
 		ProjectionScreenText.setBackground(new Color(153, 204, 204));
-		ProjectionScreenText.setBounds(77, 260, 218, 23);
-		ProjectionScreenText.setText(Equipment.ekranas.getName() + " (" + Equipment.ekranas.getPrice() + " EUR)");
+		ProjectionScreenText.setBounds(77, 377, 218, 44);
+		ProjectionScreenText.setText(Equipment.ekranas.getName() + " (" + Equipment.ekranas.getPrice() + " EUR), available: " + Equipment.ekranas.getAvailable());
 		frame.getContentPane().add(ProjectionScreenText);
 		
 		JTextPane AmplifierText = new JTextPane();
 		AmplifierText.setBackground(new Color(153, 204, 204));
-		AmplifierText.setBounds(77, 233, 156, 23);
-		AmplifierText.setText(Equipment.stiprintuvas.getName() + " (" + Equipment.stiprintuvas.getPrice() + " EUR)");
+		AmplifierText.setBounds(77, 274, 156, 56);
+		AmplifierText.setText(Equipment.stiprintuvas.getName() + " (" + Equipment.stiprintuvas.getPrice() + " EUR), available: " + Equipment.stiprintuvas.getAvailable());
 		frame.getContentPane().add(AmplifierText);
 		
 		JSpinner ProjectorSpinner = new JSpinner();
@@ -179,7 +179,7 @@ public class OrderWindow extends Main{
 	}
 		});
 		LargeSpeakerSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		LargeSpeakerSpinner.setBounds(12, 113, 53, 20);
+		LargeSpeakerSpinner.setBounds(12, 127, 53, 20);
 		frame.getContentPane().add(LargeSpeakerSpinner);
 		
 		JSpinner LaserPointerSpinner = new JSpinner();
@@ -194,7 +194,7 @@ public class OrderWindow extends Main{
 	}
 		});
 		LaserPointerSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		LaserPointerSpinner.setBounds(12, 140, 53, 20);
+		LaserPointerSpinner.setBounds(12, 174, 53, 20);
 		frame.getContentPane().add(LaserPointerSpinner);
 		
 		JSpinner MicrophoneSpinner = new JSpinner();
@@ -208,7 +208,7 @@ public class OrderWindow extends Main{
 			}
 		});
 		MicrophoneSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		MicrophoneSpinner.setBounds(12, 170, 53, 20);
+		MicrophoneSpinner.setBounds(12, 230, 53, 20);
 		frame.getContentPane().add(MicrophoneSpinner);
 		
 		JSpinner WhiteBoardSpinner = new JSpinner();
@@ -222,7 +222,7 @@ public class OrderWindow extends Main{
 	}
 		});
 		WhiteBoardSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		WhiteBoardSpinner.setBounds(12, 201, 53, 20);
+		WhiteBoardSpinner.setBounds(12, 330, 53, 20);
 		frame.getContentPane().add(WhiteBoardSpinner);
 		
 		JSpinner AmplifierSpinner = new JSpinner();
@@ -236,7 +236,7 @@ public class OrderWindow extends Main{
 			}
 				});
 		AmplifierSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		AmplifierSpinner.setBounds(12, 237, 53, 20);
+		AmplifierSpinner.setBounds(12, 284, 53, 20);
 		frame.getContentPane().add(AmplifierSpinner);
 		
 		JSpinner ProjectionScreenSpinner = new JSpinner();
@@ -251,7 +251,7 @@ public class OrderWindow extends Main{
 
 		});
 		ProjectionScreenSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		ProjectionScreenSpinner.setBounds(12, 264, 53, 20);
+		ProjectionScreenSpinner.setBounds(12, 377, 53, 20);
 		frame.getContentPane().add(ProjectionScreenSpinner);
 		
 		JTextArea EquipmentText = new JTextArea();
@@ -267,7 +267,7 @@ public class OrderWindow extends Main{
 		NumberOfDaysText.setFont(new Font("Dialog", Font.PLAIN, 20));
 		NumberOfDaysText.setEditable(false);
 		NumberOfDaysText.setBackground(new Color(153, 204, 204));
-		NumberOfDaysText.setBounds(151, 315, 178, 32);
+		NumberOfDaysText.setBounds(151, 453, 178, 32);
 		frame.getContentPane().add(NumberOfDaysText);
 		
 		JSpinner NumberOfDaysSpinner = new JSpinner();
@@ -282,7 +282,7 @@ public class OrderWindow extends Main{
 				TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
 			}
 		});
-		NumberOfDaysSpinner.setBounds(327, 320, 53, 20);
+		NumberOfDaysSpinner.setBounds(327, 458, 53, 20);
 		frame.getContentPane().add(NumberOfDaysSpinner);
 				
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -318,6 +318,13 @@ public class OrderWindow extends Main{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				finalTotal = total;
+				Equipment.projektorius.setOrdered((int) ProjectorSpinner.getValue());
+				Equipment.garsiakalbis.setOrdered((int) LargeSpeakerSpinner.getValue());
+				Equipment.lazeris.setOrdered((int) LaserPointerSpinner.getValue());
+				Equipment.mikrofonas.setOrdered((int) MicrophoneSpinner.getValue());
+				Equipment.lenta.setOrdered((int) WhiteBoardSpinner.getValue());
+				Equipment.ekranas.setOrdered((int) ProjectionScreenSpinner.getValue());
+				Equipment.stiprintuvas.setOrdered((int) AmplifierSpinner.getValue());
 				RoomButtonGroup.clearSelection();
 				ProjectorSpinner.setValue(0);
 				LargeSpeakerSpinner.setValue(0);
