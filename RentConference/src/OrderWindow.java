@@ -9,22 +9,11 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class OrderWindow extends Main{
+public class OrderWindow extends TotalCalculation {
 	
 	static OrderWindow window = new OrderWindow();
-    JFrame frame = new JFrame();
-    static int ProjectorCosts = 0;
-    static int LargeSpeakerCosts = 0;
-    static int LaserPointerCosts = 0;
-    static int MicrophoneCosts = 0;
-    static int WhiteBoardCosts = 0;
-    static int ProjectionScreenCosts = 0;
-    static int AmplifierCosts = 0;
-    static int AuditoriumCosts = 0;
-    static int HallCosts = 0;
-    static int RoomCosts = 0;
-    static int ClassroomCosts = 0;
-    static int ChamberCosts = 0;
+    static JFrame frame;
+    
     
 	static void On()
 	{
@@ -36,13 +25,10 @@ public class OrderWindow extends Main{
 		window.frame.setVisible(false);
 
 	}
-	static void CalculateTotal (int ProjectorCosts, int LargeSpeakerCosts, int LaserPointerCosts, int MicrophoneCosts, int WhiteBoardCosts, int ProjectionScreenCosts, int AmplifierCosts, int AuditoriumCosts, int HallCosts, int RoomCosts, int ClassroomCosts, int ChamberCosts)
-	{
-		total = (ProjectorCosts + LargeSpeakerCosts + LaserPointerCosts + MicrophoneCosts + WhiteBoardCosts + ProjectionScreenCosts + AmplifierCosts + AuditoriumCosts + HallCosts + RoomCosts + ClassroomCosts + ChamberCosts) * NumberOfDays;
-	}
-	
+		
 	public OrderWindow() {
-		total = 0;
+		
+		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
 		frame.setBackground(new Color(153, 204, 204));
 		frame.setResizable(false);
@@ -107,7 +93,7 @@ public class OrderWindow extends Main{
 		TotalText.setBackground(new Color(153, 204, 204));
 		TotalText.setFont(new Font("Dialog", Font.PLAIN, 12));
 		TotalText.setEditable(false);
-		TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+		TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		TotalText.setBounds(498, 458, 178, 32);
 		frame.getContentPane().add(TotalText);
 		
@@ -159,8 +145,8 @@ public class OrderWindow extends Main{
 		{
 			public void stateChanged(ChangeEvent arg0) {
 				ProjectorCosts = (int) ProjectorSpinner.getValue() * Equipment.projektorius.getPrice();
-				CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-				TotalText.setText("Total : " + total + " EUR " + NumberOfDays + " dienoms");
+	TotalCalculation.CalculateTotal();				
+	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 	}
 		});
 		ProjectorSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -174,8 +160,8 @@ public class OrderWindow extends Main{
 
 			public void stateChanged(ChangeEvent arg0) {
 				LargeSpeakerCosts = (int) LargeSpeakerSpinner.getValue() * Equipment.garsiakalbis.getPrice();
-				CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-				TotalText.setText("Total : " + total + " EUR " + NumberOfDays + " dienoms");
+	TotalCalculation.CalculateTotal();				
+	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 	}
 		});
 		LargeSpeakerSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -189,8 +175,8 @@ public class OrderWindow extends Main{
 		{
 			public void stateChanged(ChangeEvent arg0) {
 				LaserPointerCosts = (int) LaserPointerSpinner.getValue() * Equipment.lazeris.getPrice();
-				CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-				TotalText.setText("Total : " + total + " EUR " + NumberOfDays + " dienoms");
+	TotalCalculation.CalculateTotal();				
+	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 	}
 		});
 		LaserPointerSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -203,8 +189,8 @@ public class OrderWindow extends Main{
 		{
 			public void stateChanged(ChangeEvent arg0) {
 				MicrophoneCosts = (int) MicrophoneSpinner.getValue() * Equipment.mikrofonas.getPrice();
-				CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-				TotalText.setText("Total : " + total + " EUR " + NumberOfDays + " dienoms");
+	TotalCalculation.CalculateTotal();				
+	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 			}
 		});
 		MicrophoneSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -217,8 +203,8 @@ public class OrderWindow extends Main{
 		{
 			public void stateChanged(ChangeEvent arg0) {
 				WhiteBoardCosts = (int) WhiteBoardSpinner.getValue() * Equipment.lenta.getPrice();
-				CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-				TotalText.setText("Total : " + total + " EUR " + NumberOfDays + " dienoms");
+	TotalCalculation.CalculateTotal();				
+	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 	}
 		});
 		WhiteBoardSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -231,8 +217,8 @@ public class OrderWindow extends Main{
 				{
 			public void stateChanged(ChangeEvent arg0) {
 				AmplifierCosts = (int) AmplifierSpinner.getValue() * Equipment.stiprintuvas.getPrice();
-				CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-				TotalText.setText("Total : " + total + " EUR " + NumberOfDays + " dienoms");
+	TotalCalculation.CalculateTotal();				
+	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 			}
 				});
 		AmplifierSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -245,8 +231,8 @@ public class OrderWindow extends Main{
 		{
 			public void stateChanged(ChangeEvent arg0) {
 				ProjectionScreenCosts = (int) ProjectionScreenSpinner.getValue() * Equipment.ekranas.getPrice();
-				CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-				TotalText.setText("Total : " + total + " EUR " + NumberOfDays + " dienoms");
+	TotalCalculation.CalculateTotal();				
+	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 	}
 
 		});
@@ -278,8 +264,8 @@ public class OrderWindow extends Main{
 		{
 			public void stateChanged(ChangeEvent arg0) {
 				NumberOfDays = (int) NumberOfDaysSpinner.getValue();
-				CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-				TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+	TotalCalculation.CalculateTotal();				
+	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 			}
 		});
 		NumberOfDaysSpinner.setBounds(327, 458, 53, 20);
@@ -325,7 +311,7 @@ public class OrderWindow extends Main{
 				Equipment.lenta.setOrdered((int) WhiteBoardSpinner.getValue());
 				Equipment.ekranas.setOrdered((int) ProjectionScreenSpinner.getValue());
 				Equipment.stiprintuvas.setOrdered((int) AmplifierSpinner.getValue());
-				RoomButtonGroup.clearSelection();
+				OrderConfirmation.setTotalText();
 				ProjectorSpinner.setValue(0);
 				LargeSpeakerSpinner.setValue(0);
 				LaserPointerSpinner.setValue(0);
@@ -337,6 +323,7 @@ public class OrderWindow extends Main{
 				NumberOfDaysSpinner.setValue(1);
 				OrderWindow.Off();
 				OrderConfirmation.On();
+				RoomButtonGroup.clearSelection();
 			}
 		});
 
@@ -349,15 +336,14 @@ AuditoriumButton.addItemListener(new ItemListener()
 		{
 			TextRoom.setText("The selected room is:\n" + Rooms.auditorija.getName() + "\nthe room can fit " + Rooms.auditorija.getArea() + " people\nthe rent price is " + Rooms.auditorija.getPrice() + " euros for a day.");
 			AuditoriumCosts = Rooms.auditorija.getPrice();
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
 		{
 			AuditoriumCosts = 0;
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();			
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 	}
 });
@@ -370,14 +356,14 @@ HallButton.addItemListener(new ItemListener()
 		{
 			TextRoom.setText("The selected room is:\n" + Rooms.sale.getName() + "\nthe room can fit " + Rooms.sale.getArea() + " people\nthe rent price is " + Rooms.sale.getPrice() + " euros for a day.");
 			HallCosts = Rooms.sale.getPrice();
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();			
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
 		{
 			HallCosts = 0;
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();			
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 	}
 });
@@ -390,14 +376,14 @@ RoomButton.addItemListener(new ItemListener()
 		{
 			TextRoom.setText("The selected room is:\n" + Rooms.kambarys.getName() + "\nthe room can fit " + Rooms.kambarys.getArea() + " people\nthe rent price is " + Rooms.kambarys.getPrice() + " euros for a day.");
 			RoomCosts = Rooms.kambarys.getPrice();
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();			
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
 		{
 			RoomCosts = 0;
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();			
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 	}
 });
@@ -409,14 +395,14 @@ ClassroomButton.addItemListener(new ItemListener()
 		{
 			TextRoom.setText("The selected room is:\n" + Rooms.klase.getName() + "\nthe room can fit " + Rooms.klase.getArea() + " people\nthe rent price is " + Rooms.klase.getPrice() + " euros for a day.");
 			ClassroomCosts = Rooms.klase.getPrice();
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();			
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
 		{
 			ClassroomCosts = 0;
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();	
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 	}
 });
@@ -429,14 +415,14 @@ ChamberButton.addItemListener(new ItemListener()
 		{
 			TextRoom.setText("The selected room is:\n" + Rooms.kambariukas.getName() + "\nthe room can fit " + Rooms.kambariukas.getArea() + " people\nthe rent price is " + Rooms.kambariukas.getPrice() + " euros for a day.");
 			ChamberCosts = Rooms.kambariukas.getPrice();
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+TotalCalculation.CalculateTotal();			
+TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
 		{
 			ChamberCosts = 0;
-			CalculateTotal (ProjectorCosts, LargeSpeakerCosts, LaserPointerCosts, MicrophoneCosts, WhiteBoardCosts, ProjectionScreenCosts, AmplifierCosts, AuditoriumCosts, HallCosts, RoomCosts, ClassroomCosts, ChamberCosts);
-			TotalText.setText("Total: " + total + " EUR " + NumberOfDays + " dienoms");
+			TotalCalculation.CalculateTotal();
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 	}
 });

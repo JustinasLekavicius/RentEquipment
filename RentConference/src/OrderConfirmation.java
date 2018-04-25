@@ -7,18 +7,41 @@ import javax.swing.*;
 public class OrderConfirmation extends Main {
 	
 	static OrderConfirmation window = new OrderConfirmation();
-	JFrame frame = new JFrame();
+	static JFrame frame;
+	static JTextArea TotalOrder;
 	
-	static void On()
+
+	 static void On()
 	{
 		window.frame.setVisible(true);
 	}
-	static void Off()
+	 static void Off()
 	{
 		window.frame.setVisible(false);
 	}
-	
+	 static void setTotalText()
+		{
+				JOptionPane.showMessageDialog(null, "Test");
+			
+			TotalOrder.setFont(new Font("Dialog", Font.PLAIN, 17));
+			TotalOrder.setBackground(new Color(153, 204, 204));
+			for (Equipment items: Equipment.values()) {
+				if(items.getOrdered() != 0)
+			TotalOrder.append(items.getName() + " " + items.getOrdered() + " units for " + (items.getPrice() * items.getOrdered()) + " EUR \n");
+			}
+			TotalOrder.append("For "+ NumberOfDays + " days\n");
+			TotalOrder.append("Total: " + finalTotal + " EUR \n");
+			TotalOrder.setEditable(false);
+			TotalOrder.setBounds(70, 115, 525, 271);
+			frame.getContentPane().add(TotalOrder);
+		}
+	 static void clearTotalText()
+	 {
+		 TotalOrder.setText("");
+	 }
 	public OrderConfirmation() {
+		frame = new JFrame();
+		TotalOrder = new JTextArea();
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
 		frame.setBackground(new Color(153, 204, 204));
 		frame.setResizable(false);
@@ -34,19 +57,6 @@ public class OrderConfirmation extends Main {
 		OrderText.setText("Your order:");
 		OrderText.setBounds(209, 27, 264, 88);
 		frame.getContentPane().add(OrderText);
-		
-		JTextArea TotalOrder = new JTextArea();
-		TotalOrder.setFont(new Font("Dialog", Font.PLAIN, 17));
-		TotalOrder.setBackground(new Color(153, 204, 204));
-		for (Equipment items: Equipment.values()) {
-			if(items.getOrdered() != 0)
-		TotalOrder.append(items.getName() + " " + items.getOrdered() + " units for " + (items.getPrice() * items.getOrdered()) + " EUR \n");
-		}
-		TotalOrder.append("Total: " + finalTotal + " EUR \n");
-		TotalOrder.setEditable(false);
-		TotalOrder.setBounds(70, 115, 525, 271);
-		frame.getContentPane().add(TotalOrder);
-		
 		JTextPane ConfirmationText = new JTextPane();
 		ConfirmationText.setText("Are you sure you want to confirm your order?");
 		ConfirmationText.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -62,6 +72,7 @@ public class OrderConfirmation extends Main {
 				{
 
 					public void actionPerformed(ActionEvent arg0) {
+						TotalOrder.setText("");
 						OrderConfirmation.Off();
 						MainWindow.On();
 					}
@@ -74,9 +85,12 @@ public class OrderConfirmation extends Main {
 		{
 
 			public void actionPerformed(ActionEvent arg0) {
-				total = 0;
+				TotalOrder.setText("");
+				finalTotal = 0;
 				OrderConfirmation.Off();
 				MainWindow.On();
+				JOptionPane.showMessageDialog(null, "Thank you for ordering! Have a nice day!");
+
 			}
 			
 		});
