@@ -24,7 +24,7 @@ public class OrderWarningWindow extends Main {
 		frame.setResizable(false);
 		frame.setTitle("Warning");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 495, 167);
+		frame.setBounds(100, 100, 495, 192);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		JTextPane WarningText = new JTextPane();

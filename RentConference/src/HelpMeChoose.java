@@ -86,53 +86,6 @@ public class HelpMeChoose {
 			NumberOfPeopleSpinner.setBounds(12, 118, 150, 22);
 			frame.getContentPane().add(NumberOfPeopleSpinner);
 			
-			JTextArea TextDate = new JTextArea();
-			TextDate.setFont(new Font("Dialog", Font.PLAIN, 16));
-			TextDate.setBackground(new Color(153, 204, 204));
-			TextDate.setText("Reservation time:");
-			TextDate.setEditable(false);
-			TextDate.setColumns(10);
-			TextDate.setBounds(12, 153, 133, 22);
-			frame.getContentPane().add(TextDate);
-			
-			JSpinner TimeStartSpinner = new JSpinner();
-			TimeStartSpinner.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.HOUR));
-			TimeStartSpinner.setBounds(115, 190, 133, 22);
-			TimeStartSpinner.addInputMethodListener(new InputMethodListener() {
-				public void caretPositionChanged(InputMethodEvent arg0) {
-				}
-
-				@Override
-				public void inputMethodTextChanged(InputMethodEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
-			
-			JTextArea TextStart = new JTextArea();
-			TextStart.setFont(new Font("Dialog", Font.PLAIN, 16));
-			TextStart.setBackground(new Color(153, 204, 204));
-			TextStart.setText("Start");
-			TextStart.setEditable(false);
-			TextStart.setColumns(10);
-			TextStart.setBounds(12, 193, 91, 22);
-			frame.getContentPane().add(TextStart);
-			frame.getContentPane().add(TimeStartSpinner);
-			
-			JTextArea TextEnd = new JTextArea();
-			TextEnd.setFont(new Font("Dialog", Font.PLAIN, 16));
-			TextEnd.setBackground(new Color(153, 204, 204));
-			TextEnd.setText("End");
-			TextEnd.setEditable(false);
-			TextEnd.setColumns(10);
-			TextEnd.setBounds(12, 225, 91, 22);
-			frame.getContentPane().add(TextEnd);
-			
-			JSpinner TimeEndSpinner = new JSpinner();
-			TimeEndSpinner.setModel(new SpinnerDateModel(new Date(1523221200000L), null, null, Calendar.SECOND));
-			TimeEndSpinner.setBounds(115, 224, 133, 22);
-			frame.getContentPane().add(TimeEndSpinner);
-			
 			JButton BackButton = new JButton("Back");
 			BackButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

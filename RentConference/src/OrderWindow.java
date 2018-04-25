@@ -1,18 +1,24 @@
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.EnumSet;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 public class OrderWindow extends TotalCalculation {
 	
 	static OrderWindow window = new OrderWindow();
     static JFrame frame;
+    private JTextField textField;
     
     
 	static void On()
@@ -27,13 +33,13 @@ public class OrderWindow extends TotalCalculation {
 	}
 		
 	public OrderWindow() {
-		
+	
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
 		frame.setBackground(new Color(153, 204, 204));
 		frame.setResizable(false);
 		frame.setTitle("Order window");
-		frame.setBounds(100, 100, 843, 502);
+		frame.setBounds(100, 100, 856, 546);
 		frame.getContentPane().setLayout(null);
 				
 		JTextArea TextRoom = new JTextArea();
@@ -94,7 +100,7 @@ public class OrderWindow extends TotalCalculation {
 		TotalText.setFont(new Font("Dialog", Font.PLAIN, 12));
 		TotalText.setEditable(false);
 		TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
-		TotalText.setBounds(498, 458, 178, 32);
+		TotalText.setBounds(524, 462, 178, 32);
 		frame.getContentPane().add(TotalText);
 		
 		JTextPane ProjectorText = new JTextPane();
@@ -270,6 +276,21 @@ public class OrderWindow extends TotalCalculation {
 		});
 		NumberOfDaysSpinner.setBounds(327, 458, 53, 20);
 		frame.getContentPane().add(NumberOfDaysSpinner);
+		
+		textField = new JTextField();
+		textField.addComponentListener(new ComponentAdapter() {
+			/**@Override
+			public void componentShown(ComponentEvent arg0) {
+				GregorianCalendar test = new GregorianCalendar();
+				textField.setText(test.HOUR_OF_DAY);
+			}**/
+		});
+		textField.addMouseListener(new MouseAdapter() {
+			
+		});
+		textField.setBounds(396, 461, 116, 22);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
 				
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BackButton.addActionListener(new ActionListener()

@@ -1,6 +1,11 @@
 import java.awt.*;
-import javax.swing.*;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
+import javax.swing.*;
+import java.util.GregorianCalendar;
 public class Main 
 {
 	static int total = 0;
@@ -11,6 +16,12 @@ public class Main
 	{
 		MainWindow.On();
 		DataInput.ReadRoom();
+		
+		//Date
+		final TimeFlow tf = new TimeFlow();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd");
+        Date c = (Date) tf.getDate(2018, 0, 1).getTime();
+        LocalDate localDate = c.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	}
 }
 

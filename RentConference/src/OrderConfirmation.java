@@ -46,7 +46,7 @@ public class OrderConfirmation extends Main {
 		frame.setResizable(false);
 		frame.setTitle("Warning");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 661, 535);
+		frame.setBounds(100, 100, 661, 559);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		JTextPane OrderText = new JTextPane();

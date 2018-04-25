@@ -22,7 +22,7 @@ public class MainWindow extends OrderWindow {
 		frame.setBackground(new Color(153, 204, 204));
 		frame.setResizable(false);
 		frame.setTitle("RentConference");
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 455, 327);
 		frame.getContentPane().setLayout(null);
 		JButton NewOrderButton = new JButton("Start a new order");
 		NewOrderButton.setBounds(124, 50, 200, 50);
