@@ -276,6 +276,14 @@ public class OrderWindow extends TotalCalculation {
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{	finalTotal = total;
+			Equipment.projektorius.setOrdered((int) ProjectorSpinner.getValue());
+			Equipment.garsiakalbis.setOrdered((int) LargeSpeakerSpinner.getValue());
+			Equipment.lazeris.setOrdered((int) LaserPointerSpinner.getValue());
+			Equipment.mikrofonas.setOrdered((int) MicrophoneSpinner.getValue());
+			Equipment.lenta.setOrdered((int) WhiteBoardSpinner.getValue());
+			Equipment.ekranas.setOrdered((int) ProjectionScreenSpinner.getValue());
+			Equipment.stiprintuvas.setOrdered((int) AmplifierSpinner.getValue());
+				OrderConfirmation.setTotalText();
 				RoomButtonGroup.clearSelection();
 				ProjectorSpinner.setValue(0);
 				LargeSpeakerSpinner.setValue(0);

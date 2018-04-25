@@ -21,8 +21,7 @@ public class OrderConfirmation extends Main {
 	}
 	 static void setTotalText()
 		{
-				JOptionPane.showMessageDialog(null, "Test");
-			
+			TotalOrder.setText("");
 			TotalOrder.setFont(new Font("Dialog", Font.PLAIN, 17));
 			TotalOrder.setBackground(new Color(153, 204, 204));
 			for (Equipment items: Equipment.values()) {
@@ -72,7 +71,6 @@ public class OrderConfirmation extends Main {
 				{
 
 					public void actionPerformed(ActionEvent arg0) {
-						TotalOrder.setText("");
 						OrderConfirmation.Off();
 						MainWindow.On();
 					}
