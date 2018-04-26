@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -12,13 +14,16 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 public class OrderWindow extends TotalCalculation {
 	
 	static OrderWindow window = new OrderWindow();
     static JFrame frame;
-    private JTextField textField;
+    private JButton btnPlusDay;
+    private JLabel lblTime;
+    private JButton btnMinusDay;
     
     
 	static void On()
@@ -31,9 +36,14 @@ public class OrderWindow extends TotalCalculation {
 		window.frame.setVisible(false);
 
 	}
-		
-	public OrderWindow() {
 	
+	
+	public OrderWindow() {
+	    SimpleDateFormat SDateFormat = new SimpleDateFormat("yyyy MM dd");
+	    TimeFlow timeFlow = new TimeFlow();
+	    Date c = (Date) timeFlow.getDate(2018, 0, 1).getTime();
+	    LocalDate ld = c.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	    
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
 		frame.setBackground(new Color(153, 204, 204));
@@ -100,7 +110,7 @@ public class OrderWindow extends TotalCalculation {
 		TotalText.setFont(new Font("Dialog", Font.PLAIN, 12));
 		TotalText.setEditable(false);
 		TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
-		TotalText.setBounds(524, 462, 178, 32);
+		TotalText.setBounds(650, 407, 178, 32);
 		frame.getContentPane().add(TotalText);
 		
 		JTextPane ProjectorText = new JTextPane();
@@ -277,20 +287,40 @@ public class OrderWindow extends TotalCalculation {
 		NumberOfDaysSpinner.setBounds(327, 458, 53, 20);
 		frame.getContentPane().add(NumberOfDaysSpinner);
 		
-		textField = new JTextField();
-		textField.addComponentListener(new ComponentAdapter() {
-			/**@Override
-			public void componentShown(ComponentEvent arg0) {
-				GregorianCalendar test = new GregorianCalendar();
-				textField.setText(test.HOUR_OF_DAY);
-			}**/
+		lblTime = new JLabel("test");
+		lblTime.setFont(new Font("Arial", Font.BOLD, 17));
+		lblTime.setText(SDateFormat.format(c));
+		lblTime.setForeground(Color.BLACK);
+		lblTime.setBackground(Color.DARK_GRAY);
+		lblTime.setBounds(434, 459, 97, 24);
+		frame.getContentPane().add(lblTime);
+		//
+		
+		//
+		btnPlusDay = new JButton("+");
+		btnPlusDay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Date c = (Date) timeFlow.addDay().getTime();
+				lblTime.setText(SDateFormat.format(c));
+			}
 		});
-		textField.addMouseListener(new MouseAdapter() {
-			
+		btnPlusDay.setBounds(531, 434, 41, 25);
+		frame.getContentPane().add(btnPlusDay);
+		
+		btnMinusDay = new JButton("-");
+		btnMinusDay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+						Date c = (Date) timeFlow.subtractDay().getTime();
+						lblTime.setText(SDateFormat.format(c));
+			}
 		});
-		textField.setBounds(396, 461, 116, 22);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		btnMinusDay.setBounds(531, 460, 41, 25);
+		frame.getContentPane().add(btnMinusDay);
+		
+		JLabel lblReservationDate = new JLabel("Reservation start");
+		lblReservationDate.setBounds(426, 438, 105, 16);
+		frame.getContentPane().add(lblReservationDate);
+		
 				
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BackButton.addActionListener(new ActionListener()

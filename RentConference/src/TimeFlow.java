@@ -14,14 +14,14 @@ public class TimeFlow
 		calendar.set(Calendar.DAY_OF_MONTH, d);
 		return calendar;
 	}
-	public Calendar addMonth() 
+	public Calendar addDay() 
 	{
-		calendar.add(Calendar.MONTH, 1);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		return calendar;
 	}
-	public Calendar subtractMonth() 
+	public Calendar subtractDay() 
 	{
-		calendar.add(Calendar.MONTH, -1);
+		calendar.add(Calendar.DAY_OF_MONTH, -1);
 		return calendar;
 	}
 }

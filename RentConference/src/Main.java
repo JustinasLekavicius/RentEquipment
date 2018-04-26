@@ -18,10 +18,7 @@ public class Main
 		DataInput.ReadRoom();
 		
 		//Date
-		final TimeFlow tf = new TimeFlow();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd");
-        Date c = (Date) tf.getDate(2018, 0, 1).getTime();
-        LocalDate localDate = c.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		
 	}
 }
 
