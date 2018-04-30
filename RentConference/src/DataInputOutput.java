@@ -3,17 +3,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Formatter;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
 public class DataInputOutput {
 	
-	private Formatter RoomFormatter;
-	private Formatter EquipmentFormatter;
 	static File RoomsFile = new File("./data/rooms.txt");
 	static File EquipmentFile = new File("./data/equipment.txt");
 	static File CurrentOrdersFile = new File("./data/currentorders.txt");
@@ -81,6 +76,22 @@ public static void ReadOrderHistory()
 		}
 		
 	}
+
+public static void ReadCurrentOrders() 
+
+{
+	
+	try {
+		Scanner CurrentOrderScanner = new Scanner(CurrentOrdersFile);
+		while (CurrentOrderScanner.hasNextLine())
+			CurrentOrdersWindow.CurrentOrdersText.append(CurrentOrderScanner.nextLine() + "\n");
+		CurrentOrderScanner.close();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
 
 	public static void WriteEquipment()
 	{

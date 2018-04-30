@@ -63,6 +63,14 @@ public class MainWindow extends OrderWindow {
 			}
 		});
 		
+		CurrentOrdersButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{	CurrentOrdersWindow.CurrentOrdersText.setText("");
+				DataInputOutput.ReadCurrentOrders();
+				CurrentOrdersWindow.On();
+			}
+		});
 		NewOrderButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)

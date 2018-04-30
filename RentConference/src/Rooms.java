@@ -1,7 +1,7 @@
 public enum Rooms
 {	
 	//				NAME								CAPACITY 		PRICE			USE 			ORDERED				SELECTED
-	auditorium("Auditorium", 						100, 			30, 		"Concert", 				false, 				false),
+	auditorium("Auditorium", 							100, 			30, 		"Concert", 			false, 				false),
 	bighall("Big hall", 								70, 			20, 	 "Conference",	 		false, 				false),
 	mediumsizedroom("Medium sized room", 				30, 			10, 	 "Presentation", 		false, 				false),
 	mediumsizedclassroom("Medium sized classroom", 		35, 			15, 	 "Presentation", 		false, 				false),

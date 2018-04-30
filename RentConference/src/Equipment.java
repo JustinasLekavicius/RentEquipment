@@ -1,13 +1,13 @@
 public enum Equipment
 {	
 	//				NAME   					PRICE 		ORDERED 	AVAILABLE
-	projector("Projector", 					8, 			0, 		0),
-	largespeaker("Large speaker", 				4, 			0, 		0),
-	laserpointer("Laser pointer", 					2, 			0, 		0),
-	microphone("Microphone", 					5, 			0, 		0),
-	whiteboard("White board", 						7, 			0, 		0),
-	tripodscreen("Tripod projection screen",		 	5, 			0, 		0),
-	amplifier("Amplifier", 					6, 			0, 		0);
+	projector("Projector", 						8, 			0, 			0),
+	largespeaker("Large speaker", 				4, 			0, 			0),
+	laserpointer("Laser pointer", 				2, 			0, 			0),
+	microphone("Microphone", 					5, 			0, 			0),
+	whiteboard("White board", 					7, 			0, 			0),
+	tripodscreen("Tripod projection screen",	5, 			0, 			0),
+	amplifier("Amplifier", 						6, 			0, 			0);
 	
 	
 	private final String pavadinimas;
