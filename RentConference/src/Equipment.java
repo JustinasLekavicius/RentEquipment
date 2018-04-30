@@ -1,13 +1,13 @@
 public enum Equipment
 {	
-	//				NAME 	PRICE
-	projektorius("Projector", 8, 0, 20),
-	garsiakalbis("Large speaker", 4, 0, 20),
-	lazeris("Laser pointer", 2, 0, 20),
-	mikrofonas("Microphone", 5, 0, 20),
-	lenta("White board", 7, 0, 20),
-	ekranas("Tripod projection screen", 5, 0, 20),
-	stiprintuvas("Amplifier", 6, 0, 20);
+	//				NAME   					PRICE 		ORDERED 	AVAILABLE
+	projector("Projector", 					8, 			0, 		0),
+	largespeaker("Large speaker", 				4, 			0, 		0),
+	laserpointer("Laser pointer", 					2, 			0, 		0),
+	microphone("Microphone", 					5, 			0, 		0),
+	whiteboard("White board", 						7, 			0, 		0),
+	tripodscreen("Tripod projection screen",		 	5, 			0, 		0),
+	amplifier("Amplifier", 					6, 			0, 		0);
 	
 	
 	private final String pavadinimas;
@@ -46,5 +46,9 @@ public enum Equipment
 	{
 		likutis = available;
 	}
-	
+	static void ReduceAvailable ()
+	{
+		for (Equipment item: Equipment.values())
+		item.likutis =  item.getAvailable() - item.getOrdered();
+	}
 }

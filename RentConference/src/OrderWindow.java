@@ -21,11 +21,26 @@ public class OrderWindow extends TotalCalculation {
 	
 	static OrderWindow window = new OrderWindow();
     static JFrame frame;
-    private JButton btnPlusDay;
-    private JLabel lblTime;
-    private JButton btnMinusDay;
-    
-    
+    static JLabel StartDateText;
+    static JLabel EndDateText;
+    static JButton StartPlusButton;
+    static JButton StartMinusButton;
+    static JButton EndPlusButton;
+    static JButton EndMinusButton;
+    static JRadioButton AuditoriumButton;
+    static JRadioButton BigHallButton;
+	static JRadioButton MediumSizedRoomButton;
+	static JRadioButton MediumSizedClassroomButton;
+	static JRadioButton SmallRoomButton;
+	static ButtonGroup RoomButtonGroup;
+	static JTextPane ProjectorText;
+    static JTextPane LargeSpeakerText;
+    static JTextPane LaserPointerText;
+	static JTextPane MicrophoneText;
+	static JTextPane WhiteBoardText;
+	static JTextPane ProjectionScreenText;
+	static JTextPane AmplifierText;
+	
 	static void On()
 	{
 		window.frame.setVisible(true);
@@ -36,13 +51,56 @@ public class OrderWindow extends TotalCalculation {
 		window.frame.setVisible(false);
 
 	}
-	
+	static void setText()
+	{
+		ProjectorText.setText(Equipment.projector.getName() + " (" + Equipment.projector.getPrice() + " EUR), available: " + Equipment.projector.getAvailable());
+		LargeSpeakerText.setText(Equipment.largespeaker.getName() + " (" + Equipment.largespeaker.getPrice() + " EUR), available: " + Equipment.largespeaker.getAvailable());
+		LaserPointerText.setText(Equipment.laserpointer.getName() + " (" + Equipment.laserpointer.getPrice() + " EUR), available: " + Equipment.laserpointer.getAvailable());
+		MicrophoneText.setText(Equipment.microphone.getName() + " (" + Equipment.microphone.getPrice() + " EUR), available: " + Equipment.microphone.getAvailable());
+		WhiteBoardText.setText(Equipment.whiteboard.getName() + " (" + Equipment.whiteboard.getPrice() + " EUR), available: " + Equipment.whiteboard.getAvailable());
+		ProjectionScreenText.setText(Equipment.tripodscreen.getName() + " (" + Equipment.tripodscreen.getPrice() + " EUR), available: " + Equipment.tripodscreen.getAvailable());
+		AmplifierText.setText(Equipment.amplifier.getName() + " (" + Equipment.amplifier.getPrice() + " EUR), available: " + Equipment.amplifier.getAvailable());
+
+	}
+	static void CheckIfRented()
+	{
+		if (Rooms.auditorium.getOrdered() == true)
+		{
+			AuditoriumButton.setEnabled(false);
+		}
+		else AuditoriumButton.setEnabled(true);
+		
+		if (Rooms.bighall.getOrdered() == true)
+		{
+			BigHallButton.setEnabled(false);
+		}
+		else BigHallButton.setEnabled(true);
+		
+		if (Rooms.mediumsizedroom.getOrdered() == true)
+		{
+			MediumSizedRoomButton.setEnabled(false);
+		}
+		else MediumSizedRoomButton.setEnabled(true);
+		
+		if (Rooms.mediumsizedclassroom.getOrdered() == true)
+		{
+			MediumSizedClassroomButton.setEnabled(false);
+		}
+		else MediumSizedClassroomButton.setEnabled(true);
+		
+		if (Rooms.smallroom.getOrdered() == true)
+		{
+			SmallRoomButton.setEnabled(false);
+		}
+		else SmallRoomButton.setEnabled(true);
+	}
 	
 	public OrderWindow() {
-	    SimpleDateFormat SDateFormat = new SimpleDateFormat("yyyy MM dd");
-	    TimeFlow timeFlow = new TimeFlow();
-	    Date c = (Date) timeFlow.getDate(2018, 0, 1).getTime();
-	    LocalDate ld = c.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	    
+	    TimeFlow.ReservationStartDate = (Date) TimeFlow.getCurrentDate();
+	    TimeFlow.ReservationEndDate = (Date) TimeFlow.getCurrentDate();
+	    TimeFlow.calendar = Calendar.getInstance();
+	    TimeFlow.calendar.setTime(TimeFlow.getCurrentDate());
 	    
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
@@ -57,41 +115,46 @@ public class OrderWindow extends TotalCalculation {
 		TextRoom.setBackground(new Color(153, 204, 204));
 		TextRoom.setText("Please select a room.");
 		TextRoom.setEditable(false);
-		TextRoom.setBounds(524, 38, 304, 186);
+		TextRoom.setBounds(524, 38, 304, 136);
 		frame.getContentPane().add(TextRoom);
 	
-		JRadioButton AuditoriumButton = new JRadioButton ("Auditorium");
+		AuditoriumButton = new JRadioButton ("Auditorium");
+		AuditoriumButton.setFont(new Font("Dialog", Font.BOLD, 10));
 		AuditoriumButton.setBackground(new Color(153, 204, 204));
-		AuditoriumButton.setBounds(378, 38, 117, 25);
+		AuditoriumButton.setBounds(378, 38, 138, 25);
 		frame.getContentPane().add(AuditoriumButton);
 		
-		JRadioButton HallButton = new JRadioButton ("Hall");
-		HallButton.setBackground(new Color(153, 204, 204));
-		HallButton.setBounds(378, 112, 117, 25);
-		frame.getContentPane().add(HallButton);
+		BigHallButton = new JRadioButton ("Big Hall");
+		BigHallButton.setFont(new Font("Dialog", Font.BOLD, 10));
+		BigHallButton.setBackground(new Color(153, 204, 204));
+		BigHallButton.setBounds(378, 112, 138, 25);
+		frame.getContentPane().add(BigHallButton);
 		
-		JRadioButton RoomButton = new JRadioButton ("Room");
-		RoomButton.setBackground(new Color(153, 204, 204));
-		RoomButton.setBounds(378, 75, 117, 25);
-		frame.getContentPane().add(RoomButton);		
+		MediumSizedRoomButton = new JRadioButton ("Medium sized room");
+		MediumSizedRoomButton.setFont(new Font("Dialog", Font.BOLD, 10));
+		MediumSizedRoomButton.setBackground(new Color(153, 204, 204));
+		MediumSizedRoomButton.setBounds(378, 75, 138, 25);
+		frame.getContentPane().add(MediumSizedRoomButton);		
 		
-		JRadioButton ClassroomButton = new JRadioButton("Classroom");
-		ClassroomButton.setBackground(new Color(153, 204, 204));
-		ClassroomButton.setBounds(378, 186, 117, 25);
-		frame.getContentPane().add(ClassroomButton);
+		MediumSizedClassroomButton = new JRadioButton("Medium sized classroom");
+		MediumSizedClassroomButton.setFont(new Font("Dialog", Font.BOLD, 10));
+		MediumSizedClassroomButton.setBackground(new Color(153, 204, 204));
+		MediumSizedClassroomButton.setBounds(378, 186, 178, 25);
+		frame.getContentPane().add(MediumSizedClassroomButton);
 		
-		JRadioButton ChamberButton = new JRadioButton("Chamber");
-		ChamberButton.setBackground(new Color(153, 204, 204));
-		ChamberButton.setBounds(378, 149, 117, 25);
-		frame.getContentPane().add(ChamberButton);
+		SmallRoomButton = new JRadioButton("Small room");
+		SmallRoomButton.setFont(new Font("Dialog", Font.BOLD, 10));
+		SmallRoomButton.setBackground(new Color(153, 204, 204));
+		SmallRoomButton.setBounds(378, 149, 138, 25);
+		frame.getContentPane().add(SmallRoomButton);
 		
-		ButtonGroup RoomButtonGroup = new ButtonGroup();
+		RoomButtonGroup = new ButtonGroup();
 		
-		RoomButtonGroup.add(ClassroomButton);
-		RoomButtonGroup.add(ChamberButton);
+		RoomButtonGroup.add(MediumSizedClassroomButton);
+		RoomButtonGroup.add(SmallRoomButton);
 		RoomButtonGroup.add(AuditoriumButton);
-		RoomButtonGroup.add(HallButton);
-		RoomButtonGroup.add(RoomButton);
+		RoomButtonGroup.add(BigHallButton);
+		RoomButtonGroup.add(MediumSizedRoomButton);
 		
 		JButton HelpMeButton = new JButton("Help me choose!");
 		HelpMeButton.setBounds(563, 230, 200, 44);
@@ -113,46 +176,46 @@ public class OrderWindow extends TotalCalculation {
 		TotalText.setBounds(650, 407, 178, 32);
 		frame.getContentPane().add(TotalText);
 		
-		JTextPane ProjectorText = new JTextPane();
+		ProjectorText = new JTextPane();
+		ProjectorText.setEditable(false);
 		ProjectorText.setBackground(new Color(153, 204, 204));
 		ProjectorText.setBounds(77, 75, 156, 44);
-		ProjectorText.setText(Equipment.projektorius.getName() + " (" + Equipment.projektorius.getPrice() + " EUR), available: " + Equipment.projektorius.getAvailable());
 		frame.getContentPane().add(ProjectorText);
 		
-		JTextPane LargeSpeakerText = new JTextPane();
+		LargeSpeakerText = new JTextPane();
+		LargeSpeakerText.setEditable(false);
 		LargeSpeakerText.setBackground(new Color(153, 204, 204));
 		LargeSpeakerText.setBounds(77, 120, 156, 54);
-		LargeSpeakerText.setText(Equipment.garsiakalbis.getName() + " (" + Equipment.garsiakalbis.getPrice() + " EUR), available: " + Equipment.garsiakalbis.getAvailable());
 		frame.getContentPane().add(LargeSpeakerText);
 		
-		JTextPane LaserPointerText = new JTextPane();
+		LaserPointerText = new JTextPane();
+		LaserPointerText.setEditable(false);
 		LaserPointerText.setBackground(new Color(153, 204, 204));
 		LaserPointerText.setBounds(77, 168, 212, 55);
-		LaserPointerText.setText(Equipment.lazeris.getName() + " (" + Equipment.lazeris.getPrice() + " EUR), available: " + Equipment.lazeris.getAvailable());
 		frame.getContentPane().add(LaserPointerText);
 		
-		JTextPane MicrophoneText = new JTextPane();
+		MicrophoneText = new JTextPane();
+		MicrophoneText.setEditable(false);
 		MicrophoneText.setBackground(new Color(153, 204, 204));
 		MicrophoneText.setBounds(77, 219, 191, 51);
-		MicrophoneText.setText(Equipment.mikrofonas.getName() + " (" + Equipment.mikrofonas.getPrice() + " EUR), available: " + Equipment.mikrofonas.getAvailable());
 		frame.getContentPane().add(MicrophoneText);
 		
-		JTextPane WhiteBoardText = new JTextPane();
+		WhiteBoardText = new JTextPane();
+		WhiteBoardText.setEditable(false);
 		WhiteBoardText.setBackground(new Color(153, 204, 204));
 		WhiteBoardText.setBounds(77, 326, 218, 56);
-		WhiteBoardText.setText(Equipment.lenta.getName() + " (" + Equipment.lenta.getPrice() + " EUR), available: " + Equipment.lenta.getAvailable());
 		frame.getContentPane().add(WhiteBoardText);
 		
-		JTextPane ProjectionScreenText = new JTextPane();
+		ProjectionScreenText = new JTextPane();
+		ProjectionScreenText.setEditable(false);
 		ProjectionScreenText.setBackground(new Color(153, 204, 204));
 		ProjectionScreenText.setBounds(77, 377, 218, 44);
-		ProjectionScreenText.setText(Equipment.ekranas.getName() + " (" + Equipment.ekranas.getPrice() + " EUR), available: " + Equipment.ekranas.getAvailable());
 		frame.getContentPane().add(ProjectionScreenText);
 		
-		JTextPane AmplifierText = new JTextPane();
+		AmplifierText = new JTextPane();
+		AmplifierText.setEditable(false);
 		AmplifierText.setBackground(new Color(153, 204, 204));
 		AmplifierText.setBounds(77, 274, 156, 56);
-		AmplifierText.setText(Equipment.stiprintuvas.getName() + " (" + Equipment.stiprintuvas.getPrice() + " EUR), available: " + Equipment.stiprintuvas.getAvailable());
 		frame.getContentPane().add(AmplifierText);
 		
 		JSpinner ProjectorSpinner = new JSpinner();
@@ -160,9 +223,12 @@ public class OrderWindow extends TotalCalculation {
 		ProjectorSpinner.addChangeListener(new ChangeListener()
 		{
 			public void stateChanged(ChangeEvent arg0) {
-				ProjectorCosts = (int) ProjectorSpinner.getValue() * Equipment.projektorius.getPrice();
+				if ((int) ProjectorSpinner.getValue() <= Equipment.projector.getAvailable()) {
+				ProjectorCosts = (int) ProjectorSpinner.getValue() * Equipment.projector.getPrice();
 	TotalCalculation.CalculateTotal();				
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+				}
+				else ProjectorSpinner.setValue(Equipment.projector.getAvailable());
 	}
 		});
 		ProjectorSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -175,9 +241,12 @@ public class OrderWindow extends TotalCalculation {
 		{
 
 			public void stateChanged(ChangeEvent arg0) {
-				LargeSpeakerCosts = (int) LargeSpeakerSpinner.getValue() * Equipment.garsiakalbis.getPrice();
+				if ((int) LargeSpeakerSpinner.getValue() <= Equipment.largespeaker.getAvailable()) {
+				LargeSpeakerCosts = (int) LargeSpeakerSpinner.getValue() * Equipment.largespeaker.getPrice();
 	TotalCalculation.CalculateTotal();				
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+				}
+				else LargeSpeakerSpinner.setValue(Equipment.largespeaker.getAvailable());
 	}
 		});
 		LargeSpeakerSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -190,10 +259,13 @@ public class OrderWindow extends TotalCalculation {
 		LaserPointerSpinner.addChangeListener(new ChangeListener()
 		{
 			public void stateChanged(ChangeEvent arg0) {
-				LaserPointerCosts = (int) LaserPointerSpinner.getValue() * Equipment.lazeris.getPrice();
+				if ((int) LaserPointerSpinner.getValue() <= Equipment.laserpointer.getAvailable()) {
+				LaserPointerCosts = (int) LaserPointerSpinner.getValue() * Equipment.laserpointer.getPrice();
 	TotalCalculation.CalculateTotal();				
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
-	}
+				}
+				else LaserPointerSpinner.setValue(Equipment.laserpointer.getAvailable());
+			}
 		});
 		LaserPointerSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		LaserPointerSpinner.setBounds(12, 174, 53, 20);
@@ -204,9 +276,12 @@ public class OrderWindow extends TotalCalculation {
 		MicrophoneSpinner.addChangeListener(new ChangeListener()
 		{
 			public void stateChanged(ChangeEvent arg0) {
-				MicrophoneCosts = (int) MicrophoneSpinner.getValue() * Equipment.mikrofonas.getPrice();
+				if ((int) MicrophoneSpinner.getValue() <= Equipment.microphone.getAvailable()) {
+				MicrophoneCosts = (int) MicrophoneSpinner.getValue() * Equipment.microphone.getPrice();
 	TotalCalculation.CalculateTotal();				
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+				}
+				else MicrophoneSpinner.setValue(Equipment.microphone.getAvailable());
 			}
 		});
 		MicrophoneSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -218,9 +293,12 @@ public class OrderWindow extends TotalCalculation {
 		WhiteBoardSpinner.addChangeListener(new ChangeListener()
 		{
 			public void stateChanged(ChangeEvent arg0) {
-				WhiteBoardCosts = (int) WhiteBoardSpinner.getValue() * Equipment.lenta.getPrice();
+				if ((int) WhiteBoardSpinner.getValue() <= Equipment.whiteboard.getAvailable()) {
+				WhiteBoardCosts = (int) WhiteBoardSpinner.getValue() * Equipment.whiteboard.getPrice();
 	TotalCalculation.CalculateTotal();				
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+				}
+				else WhiteBoardSpinner.setValue(Equipment.whiteboard.getAvailable());
 	}
 		});
 		WhiteBoardSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -232,9 +310,12 @@ public class OrderWindow extends TotalCalculation {
 		AmplifierSpinner.addChangeListener(new ChangeListener()
 				{
 			public void stateChanged(ChangeEvent arg0) {
-				AmplifierCosts = (int) AmplifierSpinner.getValue() * Equipment.stiprintuvas.getPrice();
+				if ((int) AmplifierSpinner.getValue() <= Equipment.amplifier.getAvailable()) {
+				AmplifierCosts = (int) AmplifierSpinner.getValue() * Equipment.amplifier.getPrice();
 	TotalCalculation.CalculateTotal();				
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+				}
+				else AmplifierSpinner.setValue(Equipment.amplifier.getAvailable());
 			}
 				});
 		AmplifierSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -246,9 +327,12 @@ public class OrderWindow extends TotalCalculation {
 		ProjectionScreenSpinner.addChangeListener(new ChangeListener()
 		{
 			public void stateChanged(ChangeEvent arg0) {
-				ProjectionScreenCosts = (int) ProjectionScreenSpinner.getValue() * Equipment.ekranas.getPrice();
+				if ((int) ProjectionScreenSpinner.getValue() <= Equipment.tripodscreen.getAvailable()) {
+				ProjectionScreenCosts = (int) ProjectionScreenSpinner.getValue() * Equipment.tripodscreen.getPrice();
 	TotalCalculation.CalculateTotal();				
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+				}
+				else ProjectionScreenSpinner.setValue(Equipment.tripodscreen.getAvailable());
 	}
 
 		});
@@ -269,7 +353,7 @@ public class OrderWindow extends TotalCalculation {
 		NumberOfDaysText.setFont(new Font("Dialog", Font.PLAIN, 20));
 		NumberOfDaysText.setEditable(false);
 		NumberOfDaysText.setBackground(new Color(153, 204, 204));
-		NumberOfDaysText.setBounds(151, 453, 178, 32);
+		NumberOfDaysText.setBounds(327, 389, 178, 32);
 		frame.getContentPane().add(NumberOfDaysText);
 		
 		JSpinner NumberOfDaysSpinner = new JSpinner();
@@ -284,57 +368,114 @@ public class OrderWindow extends TotalCalculation {
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 			}
 		});
-		NumberOfDaysSpinner.setBounds(327, 458, 53, 20);
+		NumberOfDaysSpinner.setBounds(503, 394, 53, 20);
 		frame.getContentPane().add(NumberOfDaysSpinner);
 		
-		lblTime = new JLabel("test");
-		lblTime.setFont(new Font("Arial", Font.BOLD, 17));
-		lblTime.setText(SDateFormat.format(c));
-		lblTime.setForeground(Color.BLACK);
-		lblTime.setBackground(Color.DARK_GRAY);
-		lblTime.setBounds(434, 459, 97, 24);
-		frame.getContentPane().add(lblTime);
-		//
-		
-		//
-		btnPlusDay = new JButton("+");
-		btnPlusDay.addActionListener(new ActionListener() {
+		StartDateText = new JLabel("Start date goes here.");
+		StartDateText.setEnabled(false);
+		StartDateText.setFont(new Font("Arial", Font.BOLD, 17));
+		StartDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.ReservationStartDate));
+		StartDateText.setForeground(Color.BLACK);
+		StartDateText.setBackground(Color.DARK_GRAY);
+		StartDateText.setBounds(201, 455, 138, 24);
+		frame.getContentPane().add(StartDateText);
+	
+		StartPlusButton = new JButton("+");
+		StartPlusButton.setEnabled(false);
+		StartPlusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Date c = (Date) timeFlow.addDay().getTime();
-				lblTime.setText(SDateFormat.format(c));
+				TimeFlow.calendar.add(Calendar.DATE, 1);
+				TimeFlow.ReservationStartDate = (Date) TimeFlow.calendar.getTime();
+				StartDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+				}
+			
+		});
+		StartPlusButton.setBounds(357, 434, 53, 25);
+		frame.getContentPane().add(StartPlusButton);
+		
+		StartMinusButton = new JButton("-");
+		StartMinusButton.setEnabled(false);
+		StartMinusButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (TimeFlow.FormatStandard.format (TimeFlow.calendar.getTime()).equals(TimeFlow.FormatStandard.format(TimeFlow.ReservationStartDate)))
+					JOptionPane.showMessageDialog(null, "Sorry, you cannot travel back in time. Try going 88 miles per hour.");
+				else {
+					TimeFlow.calendar.add(Calendar.DATE, -1);
+				StartDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+				}
+				}
+			});
+		
+		StartMinusButton.setBounds(357, 460, 53, 25);
+		frame.getContentPane().add(StartMinusButton);
+		
+		JLabel ReservationStartText = new JLabel("Reservation start");
+		ReservationStartText.setEnabled(false);
+		ReservationStartText.setBounds(193, 434, 146, 16);
+		frame.getContentPane().add(ReservationStartText);
+		
+		JLabel ReservationEndText = new JLabel("Reservation end");
+		ReservationEndText.setEnabled(false);
+		ReservationEndText.setBounds(422, 434, 146, 16);
+		frame.getContentPane().add(ReservationEndText);
+		
+		EndDateText = new JLabel("End date goes here.");
+		EndDateText.setEnabled(false);
+		EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.ReservationStartDate));
+		EndDateText.setForeground(Color.BLACK);
+		EndDateText.setFont(new Font("Arial", Font.BOLD, 17));
+		EndDateText.setBackground(Color.DARK_GRAY);
+		EndDateText.setBounds(430, 455, 138, 24);
+		frame.getContentPane().add(EndDateText);
+		
+		EndPlusButton = new JButton("+");
+		EndPlusButton.setEnabled(false);
+		EndPlusButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnPlusDay.setBounds(531, 434, 41, 25);
-		frame.getContentPane().add(btnPlusDay);
+		EndPlusButton.setBounds(586, 434, 53, 25);
+		frame.getContentPane().add(EndPlusButton);
+		EndPlusButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				
+				TimeFlow.calendar.add(Calendar.DATE, 1);
+				EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+				}
+				
+			});
 		
-		btnMinusDay = new JButton("-");
-		btnMinusDay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-						Date c = (Date) timeFlow.subtractDay().getTime();
-						lblTime.setText(SDateFormat.format(c));
-			}
-		});
-		btnMinusDay.setBounds(531, 460, 41, 25);
-		frame.getContentPane().add(btnMinusDay);
-		
-		JLabel lblReservationDate = new JLabel("Reservation start");
-		lblReservationDate.setBounds(426, 438, 105, 16);
-		frame.getContentPane().add(lblReservationDate);
-		
+		EndMinusButton = new JButton("-");
+		EndMinusButton.setEnabled(false);
+		EndMinusButton.setBounds(586, 460, 53, 25);
+		frame.getContentPane().add(EndMinusButton);
+		EndMinusButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()).equals(TimeFlow.FormatStandard.format(TimeFlow.ReservationEndDate)))
+					JOptionPane.showMessageDialog(null, "Sorry, you cannot travel back in time. Try going 88 miles per hour.");
+				else {
+					TimeFlow.calendar.add(Calendar.DATE, -1);
+				EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+				}
+				}
+			});
 				
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BackButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{	finalTotal = total;
-			Equipment.projektorius.setOrdered((int) ProjectorSpinner.getValue());
-			Equipment.garsiakalbis.setOrdered((int) LargeSpeakerSpinner.getValue());
-			Equipment.lazeris.setOrdered((int) LaserPointerSpinner.getValue());
-			Equipment.mikrofonas.setOrdered((int) MicrophoneSpinner.getValue());
-			Equipment.lenta.setOrdered((int) WhiteBoardSpinner.getValue());
-			Equipment.ekranas.setOrdered((int) ProjectionScreenSpinner.getValue());
-			Equipment.stiprintuvas.setOrdered((int) AmplifierSpinner.getValue());
-				OrderConfirmation.setTotalText();
+			Equipment.projector.setOrdered((int) ProjectorSpinner.getValue());
+			Equipment.largespeaker.setOrdered((int) LargeSpeakerSpinner.getValue());
+			Equipment.laserpointer.setOrdered((int) LaserPointerSpinner.getValue());
+			Equipment.microphone.setOrdered((int) MicrophoneSpinner.getValue());
+			Equipment.whiteboard.setOrdered((int) WhiteBoardSpinner.getValue());
+			Equipment.tripodscreen.setOrdered((int) ProjectionScreenSpinner.getValue());
+			Equipment.amplifier.setOrdered((int) AmplifierSpinner.getValue());
+				TotalCalculation.setTotalTextOrderConfirmation();
 				RoomButtonGroup.clearSelection();
 				ProjectorSpinner.setValue(0);
 				LargeSpeakerSpinner.setValue(0);
@@ -362,15 +503,16 @@ public class OrderWindow extends TotalCalculation {
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
+				if (total != 0) {
 				finalTotal = total;
-				Equipment.projektorius.setOrdered((int) ProjectorSpinner.getValue());
-				Equipment.garsiakalbis.setOrdered((int) LargeSpeakerSpinner.getValue());
-				Equipment.lazeris.setOrdered((int) LaserPointerSpinner.getValue());
-				Equipment.mikrofonas.setOrdered((int) MicrophoneSpinner.getValue());
-				Equipment.lenta.setOrdered((int) WhiteBoardSpinner.getValue());
-				Equipment.ekranas.setOrdered((int) ProjectionScreenSpinner.getValue());
-				Equipment.stiprintuvas.setOrdered((int) AmplifierSpinner.getValue());
-				OrderConfirmation.setTotalText();
+				Equipment.projector.setOrdered((int) ProjectorSpinner.getValue());
+				Equipment.largespeaker.setOrdered((int) LargeSpeakerSpinner.getValue());
+				Equipment.laserpointer.setOrdered((int) LaserPointerSpinner.getValue());
+				Equipment.microphone.setOrdered((int) MicrophoneSpinner.getValue());
+				Equipment.whiteboard.setOrdered((int) WhiteBoardSpinner.getValue());
+				Equipment.tripodscreen.setOrdered((int) ProjectionScreenSpinner.getValue());
+				Equipment.amplifier.setOrdered((int) AmplifierSpinner.getValue());
+				TotalCalculation.setTotalTextOrderConfirmation();
 				ProjectorSpinner.setValue(0);
 				LargeSpeakerSpinner.setValue(0);
 				LaserPointerSpinner.setValue(0);
@@ -378,11 +520,13 @@ public class OrderWindow extends TotalCalculation {
 				WhiteBoardSpinner.setValue(0);
 				ProjectionScreenSpinner.setValue(0);
 				AmplifierSpinner.setValue(0);
-				TotalText.setText("Total: " + 0 + " EUR");
+				TimeFlow.calendar.add(Calendar.DATE, NumberOfDays);
 				NumberOfDaysSpinner.setValue(1);
 				OrderWindow.Off();
 				OrderConfirmation.On();
-				RoomButtonGroup.clearSelection();
+				}
+				else JOptionPane.showMessageDialog(null, "You have not selected anything!");
+
 			}
 		});
 
@@ -392,94 +536,102 @@ AuditoriumButton.addItemListener(new ItemListener()
 	public void itemStateChanged(ItemEvent arg0) {
 		
 		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-			TextRoom.setText("The selected room is:\n" + Rooms.auditorija.getName() + "\nthe room can fit " + Rooms.auditorija.getArea() + " people\nthe rent price is " + Rooms.auditorija.getPrice() + " euros for a day.");
-			AuditoriumCosts = Rooms.auditorija.getPrice();
-TotalCalculation.CalculateTotal();
-TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+		{	
+			Rooms.auditorium.setSelected(true);
+			TextRoom.setText("The selected room is:\n" + Rooms.auditorium.getName() + "\nthe room can fit " + Rooms.auditorium.getArea() + " people\nthe rent price is " + Rooms.auditorium.getPrice() + " euros for a day.");
+			AuditoriumCosts = Rooms.auditorium.getPrice();
+			TotalCalculation.CalculateTotal();
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
-		{
+		{	Rooms.auditorium.setSelected(false);
 			AuditoriumCosts = 0;
-TotalCalculation.CalculateTotal();			
-TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+			TotalCalculation.CalculateTotal();			
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 	}
 });
-HallButton.addItemListener(new ItemListener()
+BigHallButton.addItemListener(new ItemListener()
+{
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		
+		if (arg0.getStateChange() == ItemEvent.SELECTED)
+		{	Rooms.bighall.setSelected(true);
+			TextRoom.setText("The selected room is:\n" + Rooms.bighall.getName() + "\nthe room can fit " + Rooms.bighall.getArea() + " people\nthe rent price is " + Rooms.bighall.getPrice() + " euros for a day.");
+			BigHallCosts = Rooms.bighall.getPrice();
+			TotalCalculation.CalculateTotal();			
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+		}
+		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
+		{
+			Rooms.bighall.setSelected(false);
+			BigHallCosts = 0;
+			TotalCalculation.CalculateTotal();			
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+		}
+	}
+});
+MediumSizedRoomButton.addItemListener(new ItemListener()
 {
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
 		
 		if (arg0.getStateChange() == ItemEvent.SELECTED)
 		{
-			TextRoom.setText("The selected room is:\n" + Rooms.sale.getName() + "\nthe room can fit " + Rooms.sale.getArea() + " people\nthe rent price is " + Rooms.sale.getPrice() + " euros for a day.");
-			HallCosts = Rooms.sale.getPrice();
+			Rooms.mediumsizedroom.setSelected(true);
+			TextRoom.setText("The selected room is:\n" + Rooms.mediumsizedroom.getName() + "\nthe room can fit " + Rooms.mediumsizedroom.getArea() + " people\nthe rent price is " + Rooms.mediumsizedroom.getPrice() + " euros for a day.");
+			MediumSizedRoomCosts = Rooms.mediumsizedroom.getPrice();
 TotalCalculation.CalculateTotal();			
 TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
 		{
-			HallCosts = 0;
-TotalCalculation.CalculateTotal();			
-TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+			Rooms.mediumsizedroom.setSelected(false);
+			MediumSizedRoomCosts = 0;
+			TotalCalculation.CalculateTotal();			
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 	}
 });
-RoomButton.addItemListener(new ItemListener()
+MediumSizedClassroomButton.addItemListener(new ItemListener()
+{
+	public void itemStateChanged(ItemEvent arg0) {
+		
+		if (arg0.getStateChange() == ItemEvent.SELECTED)
+		{
+			Rooms.mediumsizedclassroom.setSelected(true);
+			TextRoom.setText("The selected room is:\n" + Rooms.mediumsizedclassroom.getName() + "\nthe room can fit " + Rooms.mediumsizedclassroom.getArea() + " people\nthe rent price is " + Rooms.mediumsizedclassroom.getPrice() + " euros for a day.");
+			MediumSizedClassroomCosts = Rooms.mediumsizedclassroom.getPrice();
+			TotalCalculation.CalculateTotal();			
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+		}
+		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
+		{
+			Rooms.mediumsizedclassroom.setSelected(false);
+			MediumSizedClassroomCosts = 0;
+			TotalCalculation.CalculateTotal();	
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+		}
+	}
+});
+SmallRoomButton.addItemListener(new ItemListener()
 {
 	@Override
 	public void itemStateChanged(ItemEvent arg0) {
 		
 		if (arg0.getStateChange() == ItemEvent.SELECTED)
 		{
-			TextRoom.setText("The selected room is:\n" + Rooms.kambarys.getName() + "\nthe room can fit " + Rooms.kambarys.getArea() + " people\nthe rent price is " + Rooms.kambarys.getPrice() + " euros for a day.");
-			RoomCosts = Rooms.kambarys.getPrice();
-TotalCalculation.CalculateTotal();			
-TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
+			Rooms.smallroom.setSelected(true);
+			TextRoom.setText("The selected room is:\n" + Rooms.smallroom.getName() + "\nthe room can fit " + Rooms.smallroom.getArea() + " people\nthe rent price is " + Rooms.smallroom.getPrice() + " euros for a day.");
+			SmallRoomCosts = Rooms.smallroom.getPrice();
+			TotalCalculation.CalculateTotal();			
+			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}
 		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
 		{
-			RoomCosts = 0;
-TotalCalculation.CalculateTotal();			
-TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
-		}
-	}
-});
-ClassroomButton.addItemListener(new ItemListener()
-{
-	public void itemStateChanged(ItemEvent arg0) {
-		
-		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-			TextRoom.setText("The selected room is:\n" + Rooms.klase.getName() + "\nthe room can fit " + Rooms.klase.getArea() + " people\nthe rent price is " + Rooms.klase.getPrice() + " euros for a day.");
-			ClassroomCosts = Rooms.klase.getPrice();
-TotalCalculation.CalculateTotal();			
-TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
-		}
-		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
-		{
-			ClassroomCosts = 0;
-TotalCalculation.CalculateTotal();	
-TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
-		}
-	}
-});
-ChamberButton.addItemListener(new ItemListener()
-{
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		
-		if (arg0.getStateChange() == ItemEvent.SELECTED)
-		{
-			TextRoom.setText("The selected room is:\n" + Rooms.kambariukas.getName() + "\nthe room can fit " + Rooms.kambariukas.getArea() + " people\nthe rent price is " + Rooms.kambariukas.getPrice() + " euros for a day.");
-			ChamberCosts = Rooms.kambariukas.getPrice();
-TotalCalculation.CalculateTotal();			
-TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
-		}
-		else if (arg0.getStateChange() == ItemEvent.DESELECTED)
-		{
-			ChamberCosts = 0;
+			Rooms.smallroom.setSelected(false);
+			SmallRoomCosts = 0;
 			TotalCalculation.CalculateTotal();
 			TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 		}

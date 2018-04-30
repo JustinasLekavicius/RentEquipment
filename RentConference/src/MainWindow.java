@@ -30,19 +30,20 @@ public class MainWindow extends OrderWindow {
 		JButton OrderConfirmationButton = new JButton("Order confirmation");
 		OrderConfirmationButton.setBounds(124, 128, 200, 50);
 		frame.getContentPane().add(OrderConfirmationButton);
-		
 		JButton AboutButton = new JButton("About....");
 		AboutButton.setBounds(333, 0, 117, 25);
 		frame.getContentPane().add(AboutButton);
-		
-		JButton PastOrderButton = new JButton("Past orders");
-		PastOrderButton.setBounds(6, 256, 155, 27);
-		frame.getContentPane().add(PastOrderButton);
-		
-		JButton PendingOrderButton = new JButton("Pending order");
-		PendingOrderButton.setBounds(289, 256, 155, 27);
-		frame.getContentPane().add(PendingOrderButton);
-
+		JButton OrderHistoryButton = new JButton("Order history");
+		OrderHistoryButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		OrderHistoryButton.setBounds(6, 256, 155, 27);
+		frame.getContentPane().add(OrderHistoryButton);
+		JButton CurrentOrdersButton = new JButton("Current orders");
+		CurrentOrdersButton.setBounds(289, 256, 155, 27);
+		frame.getContentPane().add(CurrentOrdersButton);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		AboutButton.addActionListener(new ActionListener()
@@ -52,7 +53,16 @@ public class MainWindow extends OrderWindow {
 						AboutWindow.On();
 					}
 				});
-				
+		
+		OrderHistoryButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{	OrderHistoryWindow.OrderHistoryText.setText("");
+				DataInputOutput.ReadOrderHistory();
+				OrderHistoryWindow.On();
+			}
+		});
+		
 		NewOrderButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -60,8 +70,13 @@ public class MainWindow extends OrderWindow {
 				if (finalTotal != 0 && OrderStarted == true)
 				OrderWarningWindow.On();
 				else {
+				OrderWindow.CheckIfRented();
+				DataInputOutput.ReadEquipment();
+				DataInputOutput.ReadRooms();
+				OrderWindow.setText();
 				OrderStarted = true;
 				total = 0;
+				OrderWindow.RoomButtonGroup.clearSelection();
 				MainWindow.Off();
 				OrderWindow.On();
 				}
@@ -81,7 +96,6 @@ public class MainWindow extends OrderWindow {
 			}
 			
 		});
-		
 		
 	}
 }

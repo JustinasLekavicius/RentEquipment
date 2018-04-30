@@ -15,8 +15,9 @@ public class Main
 	public static void main (String args[])
 	{
 		MainWindow.On();
-		DataInput.ReadRoom();
-		
+		DataInputOutput.CheckIfExists();
+		DataInputOutput.ReadEquipment();
+		DataInputOutput.ReadRooms();
 		//Date
 		
 	}

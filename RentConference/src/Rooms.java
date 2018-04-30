@@ -1,26 +1,29 @@
 public enum Rooms
 {	
-	//				NAME		CAPACITY PRICE	USE 
-	auditorija("Large auditorium", 100, 30, "Koncertas", 0),
-	sale("Big hall", 70, 20, "Konferencija", 0),
-	kambarys("Medium sized room", 30, 10, "Prezentacija", 0),
-	klase("Medium sized classroom", 35, 15, "Prezentacija", 0),
-	kambariukas("Small room", 20, 5, "Prezentacija", 0);
+	//				NAME								CAPACITY 		PRICE			USE 			ORDERED				SELECTED
+	auditorium("Auditorium", 						100, 			30, 		"Concert", 				false, 				false),
+	bighall("Big hall", 								70, 			20, 	 "Conference",	 		false, 				false),
+	mediumsizedroom("Medium sized room", 				30, 			10, 	 "Presentation", 		false, 				false),
+	mediumsizedclassroom("Medium sized classroom", 		35, 			15, 	 "Presentation", 		false, 				false),
+	smallroom("Small room", 							20, 			 5, 	 "Presentation", 	 	false, 				false);
 	
 	
 	private final String pavadinimas;
 	private final int talpa;
 	private final int kaina;
 	private final String paskirtis;
-	private int uzsakyta;
+	private boolean uzsakyta;
+	private boolean pasirinkta;
 	
-	Rooms(String name, int area, int price, String use, int ordered)
+	Rooms(String name, int area, int price, String use, boolean ordered, boolean selected)
 	{
 		pavadinimas = name;
 		talpa = area;
 		kaina = price;
 		paskirtis = use;
 		uzsakyta = ordered;
+		pasirinkta = selected;
+		
 	}
 	public String getName()
 	{
@@ -38,12 +41,20 @@ public enum Rooms
 	{
 		return paskirtis;
 	}
-	public int getOrdered()
+	public boolean getOrdered()
 	{
 		return uzsakyta;
 	}
-	public void setOrdered(int ordered)
+	public boolean getSelected()
+	{
+		return pasirinkta;
+	}
+	public void setOrdered(boolean ordered)
 	{
 		uzsakyta = ordered;
+	}
+	public void setSelected(boolean selected)
+	{
+		pasirinkta = selected;
 	}
 }
