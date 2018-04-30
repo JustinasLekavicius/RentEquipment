@@ -40,7 +40,14 @@ public class OrderWindow extends TotalCalculation {
 	static JTextPane WhiteBoardText;
 	static JTextPane ProjectionScreenText;
 	static JTextPane AmplifierText;
-	
+	static JSpinner ProjectorSpinner;
+	static JSpinner LargeSpeakerSpinner;
+	static JSpinner LaserPointerSpinner;
+	static JSpinner MicrophoneSpinner;
+	static JSpinner WhiteBoardSpinner;
+	static JSpinner ProjectionScreenSpinner;
+	static JSpinner AmplifierSpinner;
+	static JSpinner NumberOfDaysSpinner;
 	static void On()
 	{
 		window.frame.setVisible(true);
@@ -95,6 +102,28 @@ public class OrderWindow extends TotalCalculation {
 		else SmallRoomButton.setEnabled(true);
 	}
 	
+	static void ClearAllSelections()
+	{
+		RoomButtonGroup.clearSelection();
+		ProjectorSpinner.setValue(0);
+		LargeSpeakerSpinner.setValue(0);
+		LaserPointerSpinner.setValue(0);
+		MicrophoneSpinner.setValue(0);
+		WhiteBoardSpinner.setValue(0);
+		ProjectionScreenSpinner.setValue(0);
+		AmplifierSpinner.setValue(0);
+		NumberOfDaysSpinner.setValue(1);
+	}
+	static void SetOrderedValues()
+	{
+		Equipment.projector.setOrdered((int) ProjectorSpinner.getValue());
+		Equipment.largespeaker.setOrdered((int) LargeSpeakerSpinner.getValue());
+		Equipment.laserpointer.setOrdered((int) LaserPointerSpinner.getValue());
+		Equipment.microphone.setOrdered((int) MicrophoneSpinner.getValue());
+		Equipment.whiteboard.setOrdered((int) WhiteBoardSpinner.getValue());
+		Equipment.tripodscreen.setOrdered((int) ProjectionScreenSpinner.getValue());
+		Equipment.amplifier.setOrdered((int) AmplifierSpinner.getValue());
+	}
 	public OrderWindow() {
 	    
 	    TimeFlow.ReservationStartDate = (Date) TimeFlow.getCurrentDate();
@@ -218,7 +247,7 @@ public class OrderWindow extends TotalCalculation {
 		AmplifierText.setBounds(77, 274, 156, 56);
 		frame.getContentPane().add(AmplifierText);
 		
-		JSpinner ProjectorSpinner = new JSpinner();
+		ProjectorSpinner = new JSpinner();
 		ProjectorSpinner.setEditor(new JSpinner.DefaultEditor(ProjectorSpinner));
 		ProjectorSpinner.addChangeListener(new ChangeListener()
 		{
@@ -235,7 +264,7 @@ public class OrderWindow extends TotalCalculation {
 		ProjectorSpinner.setBounds(12, 77, 53, 20);
 		frame.getContentPane().add(ProjectorSpinner);
 		
-		JSpinner LargeSpeakerSpinner = new JSpinner();
+		LargeSpeakerSpinner = new JSpinner();
 		LargeSpeakerSpinner.setEditor(new JSpinner.DefaultEditor(LargeSpeakerSpinner));
 		LargeSpeakerSpinner.addChangeListener(new ChangeListener()
 		{
@@ -253,7 +282,7 @@ public class OrderWindow extends TotalCalculation {
 		LargeSpeakerSpinner.setBounds(12, 127, 53, 20);
 		frame.getContentPane().add(LargeSpeakerSpinner);
 		
-		JSpinner LaserPointerSpinner = new JSpinner();
+		LaserPointerSpinner = new JSpinner();
 		LaserPointerSpinner.setEditor(new JSpinner.DefaultEditor(LaserPointerSpinner));
 
 		LaserPointerSpinner.addChangeListener(new ChangeListener()
@@ -271,7 +300,7 @@ public class OrderWindow extends TotalCalculation {
 		LaserPointerSpinner.setBounds(12, 174, 53, 20);
 		frame.getContentPane().add(LaserPointerSpinner);
 		
-		JSpinner MicrophoneSpinner = new JSpinner();
+		MicrophoneSpinner = new JSpinner();
 		MicrophoneSpinner.setEditor(new JSpinner.DefaultEditor(MicrophoneSpinner));
 		MicrophoneSpinner.addChangeListener(new ChangeListener()
 		{
@@ -288,7 +317,7 @@ public class OrderWindow extends TotalCalculation {
 		MicrophoneSpinner.setBounds(12, 230, 53, 20);
 		frame.getContentPane().add(MicrophoneSpinner);
 		
-		JSpinner WhiteBoardSpinner = new JSpinner();
+		WhiteBoardSpinner = new JSpinner();
 		WhiteBoardSpinner.setEditor(new JSpinner.DefaultEditor(WhiteBoardSpinner));
 		WhiteBoardSpinner.addChangeListener(new ChangeListener()
 		{
@@ -305,7 +334,7 @@ public class OrderWindow extends TotalCalculation {
 		WhiteBoardSpinner.setBounds(12, 330, 53, 20);
 		frame.getContentPane().add(WhiteBoardSpinner);
 		
-		JSpinner AmplifierSpinner = new JSpinner();
+		AmplifierSpinner = new JSpinner();
 		AmplifierSpinner.setEditor(new JSpinner.DefaultEditor(AmplifierSpinner));
 		AmplifierSpinner.addChangeListener(new ChangeListener()
 				{
@@ -322,7 +351,7 @@ public class OrderWindow extends TotalCalculation {
 		AmplifierSpinner.setBounds(12, 284, 53, 20);
 		frame.getContentPane().add(AmplifierSpinner);
 		
-		JSpinner ProjectionScreenSpinner = new JSpinner();
+		ProjectionScreenSpinner = new JSpinner();
 		ProjectionScreenSpinner.setEditor(new JSpinner.DefaultEditor(ProjectionScreenSpinner));
 		ProjectionScreenSpinner.addChangeListener(new ChangeListener()
 		{
@@ -356,7 +385,7 @@ public class OrderWindow extends TotalCalculation {
 		NumberOfDaysText.setBounds(327, 389, 178, 32);
 		frame.getContentPane().add(NumberOfDaysText);
 		
-		JSpinner NumberOfDaysSpinner = new JSpinner();
+		NumberOfDaysSpinner = new JSpinner();
 		NumberOfDaysSpinner.setValue(1);
 		NumberOfDaysSpinner.setEditor(new JSpinner.DefaultEditor(NumberOfDaysSpinner));
 		NumberOfDaysSpinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
@@ -468,24 +497,11 @@ public class OrderWindow extends TotalCalculation {
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{	finalTotal = total;
-			Equipment.projector.setOrdered((int) ProjectorSpinner.getValue());
-			Equipment.largespeaker.setOrdered((int) LargeSpeakerSpinner.getValue());
-			Equipment.laserpointer.setOrdered((int) LaserPointerSpinner.getValue());
-			Equipment.microphone.setOrdered((int) MicrophoneSpinner.getValue());
-			Equipment.whiteboard.setOrdered((int) WhiteBoardSpinner.getValue());
-			Equipment.tripodscreen.setOrdered((int) ProjectionScreenSpinner.getValue());
-			Equipment.amplifier.setOrdered((int) AmplifierSpinner.getValue());
+				SetOrderedValues();
 				TotalCalculation.setTotalTextOrderConfirmation();
-				RoomButtonGroup.clearSelection();
-				ProjectorSpinner.setValue(0);
-				LargeSpeakerSpinner.setValue(0);
-				LaserPointerSpinner.setValue(0);
-				MicrophoneSpinner.setValue(0);
-				WhiteBoardSpinner.setValue(0);
-				ProjectionScreenSpinner.setValue(0);
-				AmplifierSpinner.setValue(0);
 				TotalText.setText("Total: " + 0 + " EUR");
-				NumberOfDaysSpinner.setValue(1);
+				TimeFlow.calendar.add(Calendar.DATE, NumberOfDays);
+				ClearAllSelections();
 				OrderWindow.Off();
 				MainWindow.On();
 			}
@@ -505,23 +521,10 @@ public class OrderWindow extends TotalCalculation {
 			{
 				if (total != 0) {
 				finalTotal = total;
-				Equipment.projector.setOrdered((int) ProjectorSpinner.getValue());
-				Equipment.largespeaker.setOrdered((int) LargeSpeakerSpinner.getValue());
-				Equipment.laserpointer.setOrdered((int) LaserPointerSpinner.getValue());
-				Equipment.microphone.setOrdered((int) MicrophoneSpinner.getValue());
-				Equipment.whiteboard.setOrdered((int) WhiteBoardSpinner.getValue());
-				Equipment.tripodscreen.setOrdered((int) ProjectionScreenSpinner.getValue());
-				Equipment.amplifier.setOrdered((int) AmplifierSpinner.getValue());
+				SetOrderedValues();
 				TotalCalculation.setTotalTextOrderConfirmation();
-				ProjectorSpinner.setValue(0);
-				LargeSpeakerSpinner.setValue(0);
-				LaserPointerSpinner.setValue(0);
-				MicrophoneSpinner.setValue(0);
-				WhiteBoardSpinner.setValue(0);
-				ProjectionScreenSpinner.setValue(0);
-				AmplifierSpinner.setValue(0);
 				TimeFlow.calendar.add(Calendar.DATE, NumberOfDays);
-				NumberOfDaysSpinner.setValue(1);
+				ClearAllSelections();
 				OrderWindow.Off();
 				OrderConfirmation.On();
 				}
@@ -532,7 +535,7 @@ public class OrderWindow extends TotalCalculation {
 
 AuditoriumButton.addItemListener(new ItemListener()
 {
-	@Override
+	
 	public void itemStateChanged(ItemEvent arg0) {
 		
 		if (arg0.getStateChange() == ItemEvent.SELECTED)
@@ -553,7 +556,7 @@ AuditoriumButton.addItemListener(new ItemListener()
 });
 BigHallButton.addItemListener(new ItemListener()
 {
-	@Override
+	
 	public void itemStateChanged(ItemEvent arg0) {
 		
 		if (arg0.getStateChange() == ItemEvent.SELECTED)
@@ -574,7 +577,7 @@ BigHallButton.addItemListener(new ItemListener()
 });
 MediumSizedRoomButton.addItemListener(new ItemListener()
 {
-	@Override
+	
 	public void itemStateChanged(ItemEvent arg0) {
 		
 		if (arg0.getStateChange() == ItemEvent.SELECTED)
@@ -617,7 +620,7 @@ MediumSizedClassroomButton.addItemListener(new ItemListener()
 });
 SmallRoomButton.addItemListener(new ItemListener()
 {
-	@Override
+	
 	public void itemStateChanged(ItemEvent arg0) {
 		
 		if (arg0.getStateChange() == ItemEvent.SELECTED)
