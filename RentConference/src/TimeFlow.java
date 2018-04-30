@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 public class TimeFlow 
 {
 	public static Calendar calendar;
+	public static Calendar calendarEnd;
 	static DateFormat FormatStandard  = new SimpleDateFormat("yyyy/MM/dd");
 	static Date CurrentDate;
 	static Date ReservationStartDate = (Date) TimeFlow.getCurrentDate();

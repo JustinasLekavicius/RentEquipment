@@ -130,6 +130,8 @@ public class OrderWindow extends TotalCalculation {
 	    TimeFlow.ReservationEndDate = (Date) TimeFlow.getCurrentDate();
 	    TimeFlow.calendar = Calendar.getInstance();
 	    TimeFlow.calendar.setTime(TimeFlow.getCurrentDate());
+	    TimeFlow.calendarEnd = Calendar.getInstance();
+	    TimeFlow.calendarEnd.setTime(TimeFlow.getCurrentDate());
 	    
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
@@ -401,7 +403,6 @@ public class OrderWindow extends TotalCalculation {
 		frame.getContentPane().add(NumberOfDaysSpinner);
 		
 		StartDateText = new JLabel("Start date goes here.");
-		StartDateText.setEnabled(false);
 		StartDateText.setFont(new Font("Arial", Font.BOLD, 17));
 		StartDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.ReservationStartDate));
 		StartDateText.setForeground(Color.BLACK);
@@ -410,12 +411,15 @@ public class OrderWindow extends TotalCalculation {
 		frame.getContentPane().add(StartDateText);
 	
 		StartPlusButton = new JButton("+");
-		StartPlusButton.setEnabled(false);
 		StartPlusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TimeFlow.calendar.add(Calendar.DATE, 1);
-				TimeFlow.ReservationStartDate = (Date) TimeFlow.calendar.getTime();
-				StartDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+				if (TimeFlow.FormatStandard.format (TimeFlow.ReservationStartDate.getTime()).equals(TimeFlow.ReservationEndDate.getTime()))
+					JOptionPane.showMessageDialog(null, "Please don't travel to future, thank you!");
+				else {
+					TimeFlow.calendar.add(Calendar.DATE, 1);
+					TimeFlow.ReservationStartDate = (Date) TimeFlow.calendar.getTime();
+					StartDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+				}
 				}
 			
 		});
@@ -423,11 +427,10 @@ public class OrderWindow extends TotalCalculation {
 		frame.getContentPane().add(StartPlusButton);
 		
 		StartMinusButton = new JButton("-");
-		StartMinusButton.setEnabled(false);
 		StartMinusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				if (TimeFlow.FormatStandard.format (TimeFlow.calendar.getTime()).equals(TimeFlow.FormatStandard.format(TimeFlow.ReservationStartDate)))
+				if (TimeFlow.FormatStandard.format (TimeFlow.calendar.getTime()).equals(TimeFlow.FormatStandard.format(TimeFlow.getCurrentDate())))
 					JOptionPane.showMessageDialog(null, "Sorry, you cannot travel back in time. Try going 88 miles per hour.");
 				else {
 					TimeFlow.calendar.add(Calendar.DATE, -1);
@@ -440,18 +443,15 @@ public class OrderWindow extends TotalCalculation {
 		frame.getContentPane().add(StartMinusButton);
 		
 		JLabel ReservationStartText = new JLabel("Reservation start");
-		ReservationStartText.setEnabled(false);
 		ReservationStartText.setBounds(193, 434, 146, 16);
 		frame.getContentPane().add(ReservationStartText);
 		
 		JLabel ReservationEndText = new JLabel("Reservation end");
-		ReservationEndText.setEnabled(false);
 		ReservationEndText.setBounds(422, 434, 146, 16);
 		frame.getContentPane().add(ReservationEndText);
 		
 		EndDateText = new JLabel("End date goes here.");
-		EndDateText.setEnabled(false);
-		EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.ReservationStartDate));
+		EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.getCurrentDate()));
 		EndDateText.setForeground(Color.BLACK);
 		EndDateText.setFont(new Font("Arial", Font.BOLD, 17));
 		EndDateText.setBackground(Color.DARK_GRAY);
@@ -459,7 +459,6 @@ public class OrderWindow extends TotalCalculation {
 		frame.getContentPane().add(EndDateText);
 		
 		EndPlusButton = new JButton("+");
-		EndPlusButton.setEnabled(false);
 		EndPlusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -470,24 +469,23 @@ public class OrderWindow extends TotalCalculation {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				
-				TimeFlow.calendar.add(Calendar.DATE, 1);
-				EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+				TimeFlow.calendarEnd.add(Calendar.DATE, 1);
+				EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendarEnd.getTime()));
 				}
 				
 			});
 		
 		EndMinusButton = new JButton("-");
-		EndMinusButton.setEnabled(false);
 		EndMinusButton.setBounds(586, 460, 53, 25);
 		frame.getContentPane().add(EndMinusButton);
 		EndMinusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				if (TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()).equals(TimeFlow.FormatStandard.format(TimeFlow.ReservationEndDate)))
+				if (TimeFlow.FormatStandard.format(TimeFlow.calendarEnd.getTime()).equals(TimeFlow.FormatStandard.format(TimeFlow.ReservationEndDate)))
 					JOptionPane.showMessageDialog(null, "Sorry, you cannot travel back in time. Try going 88 miles per hour.");
 				else {
-					TimeFlow.calendar.add(Calendar.DATE, -1);
-				EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+					TimeFlow.calendarEnd.add(Calendar.DATE, -1);
+				EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendarEnd.getTime()));
 				}
 				}
 			});
