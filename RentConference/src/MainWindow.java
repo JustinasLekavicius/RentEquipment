@@ -70,6 +70,7 @@ public class MainWindow extends OrderWindow {
 				if (finalTotal != 0 && OrderStarted == true)
 				OrderWarningWindow.On();
 				else {
+					OrderWindow.ClearAllSelections();
 				OrderWindow.CheckIfRented();
 				DataInputOutput.ReadEquipment();
 				DataInputOutput.ReadRooms();

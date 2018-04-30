@@ -56,7 +56,7 @@ public class OrderWarningWindow extends Main {
 				total = 0;
 				OrderWarningWindow.Off();
 				MainWindow.Off();
-				OrderWindow.RoomButtonGroup.clearSelection();
+				OrderWindow.ClearAllSelections();
 				DataInputOutput.ReadRooms();
 				DataInputOutput.ReadEquipment();
 				OrderWindow.On();

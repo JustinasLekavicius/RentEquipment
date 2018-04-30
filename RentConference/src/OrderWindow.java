@@ -501,7 +501,6 @@ public class OrderWindow extends TotalCalculation {
 				TotalCalculation.setTotalTextOrderConfirmation();
 				TotalText.setText("Total: " + 0 + " EUR");
 				TimeFlow.calendar.add(Calendar.DATE, NumberOfDays);
-				ClearAllSelections();
 				OrderWindow.Off();
 				MainWindow.On();
 			}
@@ -524,7 +523,6 @@ public class OrderWindow extends TotalCalculation {
 				SetOrderedValues();
 				TotalCalculation.setTotalTextOrderConfirmation();
 				TimeFlow.calendar.add(Calendar.DATE, NumberOfDays);
-				ClearAllSelections();
 				OrderWindow.Off();
 				OrderConfirmation.On();
 				}
