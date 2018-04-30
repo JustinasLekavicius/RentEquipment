@@ -1,0 +1,7 @@
+Projector 31 59
+LargeSpeaker 39 11
+LaserPointer 90 10
+Microphone 35 85
+WhiteBoard 10 90
+ProjectionScreen 2 98
+Amplifier 15 85

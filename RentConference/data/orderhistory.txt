@@ -1,0 +1,70 @@
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/04/30 
+---------------------------------------------
+Microphone, ordered:  5 units 
+Big hall 
+Order total: 225 EUR
+---------------------------------------------
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/04/30 
+---------------------------------------------
+Laser pointer, ordered:  6 units 
+Medium sized classroom 
+Order total: 108 EUR
+---------------------------------------------
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/04/30 
+---------------------------------------------
+Projector, ordered:  7 units 
+Medium sized room 
+Order total: 462 EUR
+---------------------------------------------
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/04/30 
+---------------------------------------------
+Small room 
+Order total: 25 EUR
+---------------------------------------------
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/04/30 
+---------------------------------------------
+Large speaker, ordered:  3 units 
+Auditorium 
+Order total: 252 EUR
+---------------------------------------------
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/05/05 
+---------------------------------------------
+Medium sized classroom 
+Order total: 75 EUR
+---------------------------------------------
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/05/04 
+---------------------------------------------
+Projector, ordered:  10 units 
+Laser pointer, ordered:  4 units 
+Big hall 
+Order total: 432 EUR
+---------------------------------------------
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/05/05 
+---------------------------------------------
+Large speaker, ordered:  2 units 
+Medium sized room 
+Order total: 18 EUR
+---------------------------------------------
+---------------------------------------------
+Reservation start: 2018/04/30 
+Reservation end: 2018/05/01 
+---------------------------------------------
+Large speaker, ordered:  4 units 
+Order total: 16 EUR
+---------------------------------------------

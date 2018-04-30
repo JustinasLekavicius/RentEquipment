@@ -1,0 +1,5 @@
+Auditorium false
+BigHall true
+MediumSizedRoom true
+MediumSizedClassroom true
+SmallRoom false
