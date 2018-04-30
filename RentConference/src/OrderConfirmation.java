@@ -72,7 +72,8 @@ public class OrderConfirmation extends Main {
 				TotalOrder.setText("");
 				DataInputOutput.WriteEquipment();
 				DataInputOutput.WriteRooms();
-				DataInputOutput.WriteOrder();
+				DataInputOutput.WriteOrder(DataInputOutput.OrderHistoryFile);
+				DataInputOutput.WriteOrder(DataInputOutput.CurrentOrdersFile);
 				finalTotal = 0;
 				OrderConfirmation.Off();
 				MainWindow.On();

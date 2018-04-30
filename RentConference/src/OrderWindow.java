@@ -187,10 +187,6 @@ public class OrderWindow extends TotalCalculation {
 		RoomButtonGroup.add(BigHallButton);
 		RoomButtonGroup.add(MediumSizedRoomButton);
 		
-		JButton HelpMeButton = new JButton("Help me choose!");
-		HelpMeButton.setBounds(563, 230, 200, 44);
-		frame.getContentPane().add(HelpMeButton);
-		
 		JButton BackButton = new JButton("Back");
 		BackButton.setBounds(12, 460, 82, 25);
 		frame.getContentPane().add(BackButton);
@@ -503,15 +499,7 @@ public class OrderWindow extends TotalCalculation {
 				MainWindow.On();
 			}
 		});
-		HelpMeButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				
-				OrderWindow.Off();
-				HelpMeChoose.On();
-			}
-		});
+		
 		NextButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)

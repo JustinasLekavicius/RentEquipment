@@ -83,8 +83,12 @@ public static void ReadCurrentOrders()
 	
 	try {
 		Scanner CurrentOrderScanner = new Scanner(CurrentOrdersFile);
-		while (CurrentOrderScanner.hasNextLine())
-			CurrentOrdersWindow.CurrentOrdersText.append(CurrentOrderScanner.nextLine() + "\n");
+		while (CurrentOrderScanner.hasNextLine()) {
+			String line = CurrentOrderScanner.nextLine();
+			if (line.contains("Order id:"))
+					JOptionPane.showMessageDialog(null, "Order found!");
+			CurrentOrdersWindow.CurrentOrdersText.append(line + "\n");
+		}
 		CurrentOrderScanner.close();
 	} catch (FileNotFoundException e) {
 		// TODO Auto-generated catch block
@@ -143,25 +147,25 @@ public static void ReadCurrentOrders()
 	}
 	}
 	
-	public static void WriteOrder()
+	public static void WriteOrder(File file)
 	{
 	try {
-		TimeFlow.ReservationEndDate = TimeFlow.calendar.getTime();
-		FileWriter printwriter = new FileWriter(OrderHistoryFile, true);
+		FileWriter printwriter = new FileWriter(file, true);
 		printwriter.append("---------------------------------------------\n");
+		printwriter.append("Order id: " + Main.orderID + "\n");
 		printwriter.append("Reservation start: " + TimeFlow.FormatStandard.format(TimeFlow.ReservationStartDate)+ " \n");
 		printwriter.append("Reservation end: " + TimeFlow.FormatStandard.format(TimeFlow.ReservationEndDate) + " \n");
 		printwriter.append("---------------------------------------------\n");
 		for (Equipment x: Equipment.values())
 		{
 			if (x.getOrdered() != 0)
-			printwriter.append(x.getName() + ", ordered:  " + x.getOrdered() + " units \n");
+			printwriter.append(x.getName() + ", ordered:  " + x.getOrdered() + " units (" + x.getPrice() + " EUR each) \n");
 		}
 		for (Rooms room: Rooms.values())
 		{
 			if (room.getSelected() == true)
 			{
-				printwriter.append(room.getName() + " \n");
+				printwriter.append(room.getName() + " ( " + room.getPrice() + " EUR) \n");
 			}
 		}
 		printwriter.append("Order total: " + Main.finalTotal + " EUR\n");
@@ -177,4 +181,8 @@ public static void ReadCurrentOrders()
 	
 }
 
+	public static void RemoveOrder()
+	{
+		
+	}
 }

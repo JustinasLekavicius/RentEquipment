@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
 public class Main 
 {
 	static int total = 0;
+	static int orderID = 1;
 	static int finalTotal = 0;
 	static int NumberOfDays = 1;
 	static boolean OrderStarted = false;
