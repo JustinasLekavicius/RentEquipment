@@ -375,27 +375,20 @@ public class OrderWindow extends TotalCalculation {
 		EquipmentText.setBounds(25, 31, 345, 32);
 		frame.getContentPane().add(EquipmentText);
 		
-		JTextArea NumberOfDaysText = new JTextArea();
-		NumberOfDaysText.setText("Number of days:");
-		NumberOfDaysText.setFont(new Font("Dialog", Font.PLAIN, 20));
-		NumberOfDaysText.setEditable(false);
-		NumberOfDaysText.setBackground(new Color(153, 204, 204));
-		NumberOfDaysText.setBounds(327, 389, 178, 32);
-		frame.getContentPane().add(NumberOfDaysText);
-		
 		NumberOfDaysSpinner = new JSpinner();
-		NumberOfDaysSpinner.setValue(1);
+		NumberOfDaysSpinner.setEnabled(false);
+		NumberOfDaysSpinner.setValue(NumberOfDays);
 		NumberOfDaysSpinner.setEditor(new JSpinner.DefaultEditor(NumberOfDaysSpinner));
 		NumberOfDaysSpinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		NumberOfDaysSpinner.addChangeListener(new ChangeListener()
 		{
 			public void stateChanged(ChangeEvent arg0) {
-				NumberOfDays = (int) NumberOfDaysSpinner.getValue();
+				
 	TotalCalculation.CalculateTotal();				
 	TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 			}
 		});
-		NumberOfDaysSpinner.setBounds(503, 394, 53, 20);
+		
 		frame.getContentPane().add(NumberOfDaysSpinner);
 		
 		StartDateText = new JLabel("Start date goes here.");
@@ -415,6 +408,8 @@ public class OrderWindow extends TotalCalculation {
 					TimeFlow.calendar.add(Calendar.DATE, 1);
 					TimeFlow.ReservationStartDate = (Date) TimeFlow.calendar.getTime();
 					StartDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+					NumberOfDays--;
+					TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 				}
 				}
 			
@@ -431,6 +426,8 @@ public class OrderWindow extends TotalCalculation {
 				else {
 					TimeFlow.calendar.add(Calendar.DATE, -1);
 				StartDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendar.getTime()));
+				NumberOfDays++;
+				TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 				}
 				}
 			});
@@ -467,6 +464,8 @@ public class OrderWindow extends TotalCalculation {
 				
 				TimeFlow.calendarEnd.add(Calendar.DATE, 1);
 				EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendarEnd.getTime()));
+				NumberOfDays++;
+				TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 				}
 				
 			});
@@ -482,6 +481,8 @@ public class OrderWindow extends TotalCalculation {
 				else {
 					TimeFlow.calendarEnd.add(Calendar.DATE, -1);
 				EndDateText.setText(TimeFlow.FormatStandard.format(TimeFlow.calendarEnd.getTime()));
+				NumberOfDays--;
+				TotalText.setText("Total: " + total + " EUR for " + NumberOfDays + " days");
 				}
 				}
 			});
@@ -499,12 +500,12 @@ public class OrderWindow extends TotalCalculation {
 				MainWindow.On();
 			}
 		});
-		
 		NextButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (total != 0) {
+				if(NumberOfDays<0) {JOptionPane.showMessageDialog(null, "You can't rent a room for " + NumberOfDays + " days!");}
+				else if(total != 0) {
 				finalTotal = total;
 				SetOrderedValues();
 				TotalCalculation.setTotalTextOrderConfirmation();
